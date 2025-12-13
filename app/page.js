@@ -1,5 +1,5 @@
-import MyLink from './components/MyLink';
-import Project from './components/Project';
+import MyLink from '@/components/MyLink';
+import Project from '@/components/Project';
 import { HiMail } from 'react-icons/hi';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 
@@ -22,9 +22,10 @@ export default function Home() {
           <div className="space-y-2">
             <p>I am a third year Mathematics undergraduate at the University of Cambridge.</p>
 
-            <p>I maintain some interactive lecture notes and explanations at <MyLink data="https://theoremtown.com">theoremtown.com</MyLink>.</p>
+            <p>I write intuition-focused <MyLink data="https://notes.danielc.rocks">maths notes</MyLink> for come courses I've taken, books I've read, and various other things. You can contact me anonymously <MyLink data="https://www.admonymous.co/chen">here</MyLink>.</p>
 
-            <p>Please feel free to give me anonymous feedback, suggestions, thoughts, jokes etc. via my <MyLink data="https://www.admonymous.co/chen">admonymous page</MyLink>.</p>
+            <p>If you want to have some fun, you can try a <MyLink data="https://terminal.danielc.rocks">Python challenge</MyLink> I designed, from my days as a cybersec enthusiast.</p>
+
           </div>
           <div className="text-center mt-4 flex justify-center gap-6">
             <MyLink data="mailto:dc872@cam.ac.uk">
@@ -56,10 +57,9 @@ export default function Home() {
             title="Denoising the Result of Monte Carlo Ion Implantation"
             titleHref="https://musical-lamington-3ffa7c.netlify.app"
             authors="Daniel Chen, Silvaco TCAD"
-            subtitle={<><em>Presentation slides will be uploaded soon</em></>}
             image="/entries/montecarlo.png"
             links={[
-              { label: "presentation photos", url: "https://musical-lamington-3ffa7c.netlify.app" },
+              { label: "presentation slides", url: "https://www.maths.cam.ac.uk/opportunities/careers-for-mathematicians/summer-research-mathematics/files/2025/Daniel%20Chen.pdf" },
             ]}
             description={
               <>
