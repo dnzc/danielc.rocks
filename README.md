@@ -1,4 +1,4 @@
-# homepage
+# danielc.rocks
 
 Source code for [danielc.rocks](https://danielc.rocks).
 
