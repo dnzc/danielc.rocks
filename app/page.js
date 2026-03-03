@@ -20,7 +20,7 @@ export default function Home() {
           </div>
           
           <div className="space-y-2">
-            <p>I'm a third year maths undergraduate at the University of Cambridge, interning at <MyLink data="https://www.jumptrading.com">Jump Trading</MyLink> this summer.</p>
+            <p>I'm a third year maths undergraduate at the University of Cambridge, doing quantitative research at <MyLink data="https://www.jumptrading.com">Jump Trading</MyLink> this summer.</p>
 
 
             <p>I write intuition-focused <MyLink data="https://notes.danielc.rocks">maths notes</MyLink> for come courses I've taken, books I've read, and various other things. You can contact me anonymously <MyLink data="https://www.admonymous.co/chen">here</MyLink>.</p>
