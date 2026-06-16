@@ -1,4 +1,4 @@
-Source code for [https://notes.danielc.rocks](https://notes.danielc.rocks). Uses [Zola](https://www.getzola.org).
+Source code for [https://danielc.rocks](https://danielc.rocks). Uses [Zola](https://www.getzola.org).
 
 Shield: [![CC BY 4.0][cc-by-shield]][cc-by]
 
