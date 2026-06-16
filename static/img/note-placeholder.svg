@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-48 -30 416 260" width="320" height="200">
+  <!-- Catppuccin Mocha surface canvas (covers the whole, zoomed-out viewBox) -->
+  <rect x="-48" y="-30" width="416" height="260" fill="#313244"/>
+
+  <!-- faint grey background curves (overlay0) -->
+  <g fill="none" stroke="#6c7086" stroke-width="9" opacity="0.6">
+    <circle cx="252" cy="56" r="64"/>
+    <circle cx="276" cy="150" r="48"/>
+  </g>
+
+  <!-- commutative diagram: object boxes at the four corners -->
+  <g fill="#313244" stroke="#eba0ac" stroke-width="1.6">
+    <rect x="157" y="50" width="30" height="34" rx="4"/>
+    <rect x="277" y="50" width="30" height="34" rx="4"/>
+    <rect x="157" y="118" width="30" height="34" rx="4"/>
+    <rect x="277" y="118" width="30" height="34" rx="4"/>
+  </g>
+
+  <!-- arrows, tips landing on the box edges -->
+  <g fill="none" stroke="#eba0ac" stroke-width="1.6">
+    <path d="M189 67 H275" marker-end="url(#ar)"/>
+    <path d="M189 135 H275" marker-end="url(#ar)"/>
+    <path d="M172 86 V116" marker-end="url(#ar)"/>
+    <path d="M292 86 V116" marker-end="url(#ar)"/>
+  </g>
+
+  <g fill="#f38ba8" font-family="Georgia, serif" font-style="italic" font-size="22" text-anchor="middle">
+    <text x="172" y="75">A</text>
+    <text x="292" y="75">B</text>
+    <text x="172" y="143">C</text>
+    <text x="292" y="143">D</text>
+  </g>
+
+  <defs>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 z" fill="#eba0ac"/>
+    </marker>
+  </defs>
+</svg>

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="prose">
+  {{ section.content | safe }}
+</div>
+
+<div class="course-grid">
+  {% for course in section.pages %}
+    {%- set part = course.extra.part | default(value="") -%}
+    {%- set term = course.extra.term | default(value="") -%}
+    {%- set year = course.extra.year | default(value="") -%}
+    {%- set lecturer = course.extra.lecturer | default(value="") -%}
+    <a class="course-card" href="{{ course.permalink | safe }}">
+      <div class="course-card-head">
+        {% if course.extra.unfinished %}<span class="card-ribbon">Unfinished</span>{% endif %}
+        <img class="course-card-bg"
+          src="{{ get_url(path=course.extra.image | default(value='img/note-placeholder.svg')) | safe }}"
+          alt="" loading="lazy">
+        <div class="course-card-headinner">
+          <div class="course-meta">
+            {{- part }} {{ term }} {{ year }}{% if lecturer %} • {{ lecturer }}{% endif -%}
+          </div>
+          <div class="course-card-title">{{ course.title }}</div>
+        </div>
+      </div>
+      <div class="course-card-body">
+        {% if course.description %}<p>{{ course.description }}</p>{% endif %}
+      </div>
+    </a>
+  {% endfor %}
+</div>
+{% endblock content %}

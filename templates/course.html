@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block nav %}{% endblock nav %}
+
+{% block top %}
+{% set parent = get_section(path=page.ancestors | last) %}
+<div class="article-top">
+  <a href="{{ parent.permalink | safe }}">← {{ config.title }}</a>
+</div>
+{% endblock top %}
+
+{% block content %}
+<article class="course">
+  <h1>{{ page.title }}<a class="heading-anchor" href="{{ page.permalink | safe }}" aria-label="Permalink">¶</a></h1>
+
+  {% if page.toc %}
+  <nav class="toc">
+    <span class="toc-title">Contents</span>
+    <ul>
+      {% for h in page.toc %}
+        <li>
+          <a href="{{ h.permalink | safe }}">{{ h.title }}</a>
+          {% if h.children %}
+          <ul>
+            {% for c in h.children %}
+              <li><a href="{{ c.permalink | safe }}">{{ c.title }}</a></li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+  {% endif %}
+
+  <div class="prose">
+    {{ page.content | safe }}
+  </div>
+</article>
+{% endblock content %}
+
+{% block bottom %}
+{% set parent = get_section(path=page.ancestors | last) %}
+<div class="article-end">
+  <a href="{{ parent.permalink | safe }}">← {{ config.title }}</a>
+</div>
+{% include "comments.html" %}
+{% endblock bottom %}
+
+{% block footer %}{% include "footer.html" %}{% endblock footer %}

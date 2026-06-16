@@ -1,0 +1,41 @@
+# The URL the site will be built for
+base_url = "https://danielc.rocks"
+
+title = "danielc.rocks"
+description = "Personal website"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Build a search index from page content (handy once the notes pile up)
+build_search_index = true
+
+[markdown]
+# Syntax highlighting for code blocks in notes
+highlight_code = true
+highlight_theme = "one-dark"
+# Auto-insert a permalink anchor (rendered as ¶ via templates/anchor-link.html)
+# to the right of every heading.
+insert_anchor_links = "right"
+# Collect all footnotes at the bottom of the page and add ↩ back-references
+# (instead of rendering each definition inline where it was written).
+bottom_footnotes = true
+
+[extra]
+author = "Daniel Chen"
+
+# Load KaTeX for math rendering ($...$ inline, $$...$$ display)
+math = true
+
+# GitHub-backed comments via giscus (https://giscus.app).
+# Comments render only once repo_id + category_id are filled in below.
+# Setup: enable Discussions on the repo, install the giscus GitHub App
+# (https://github.com/apps/giscus), then run the configurator at giscus.app
+# and paste the two ids it gives you.
+[extra.giscus]
+repo = "dnzc/danielc.rocks"
+repo_id = ""           # e.g. "R_kgD..."
+category = "Announcements"
+category_id = ""       # e.g. "DIC_kwD..."
+mapping = "pathname"   # one discussion thread per page path
+reactions = "1"

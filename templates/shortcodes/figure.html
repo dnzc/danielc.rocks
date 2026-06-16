@@ -1,0 +1,7 @@
+{# An image / SVG with an optional caption.
+   src is relative to the page (colocated asset) or an absolute /path.
+   Usage: {{ figure(src="old-site.png", alt="...", caption="...", width="32rem") }} #}
+<figure class="figure"{% if width %} style="max-width: {{ width }}"{% endif %}>
+  <img class="figure-media" src="{{ src }}" alt="{{ alt | default(value='') }}" loading="lazy">
+  {% if caption %}<figcaption>{{ caption | safe }}</figcaption>{% endif %}
+</figure>

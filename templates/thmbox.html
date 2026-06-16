@@ -1,0 +1,9 @@
+{%- set nm = name | default(value="") -%}
+<div class="thmbox thmbox-{{ kind | lower }}">
+<p class="thmbox-head"><span class="thmbox-name">{{ kind }}</span>{% if nm %} <span class="thmbox-title">({{ nm }})</span>{% endif %}</p>
+<div class="thmbox-body">
+
+{{ body | markdown | safe }}
+
+</div>
+</div>

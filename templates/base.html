@@ -1,0 +1,127 @@
+{% set this = section | default(value = page | default(value = false)) %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% block title %}
+  {% if current_path and current_path != "/" and this and this.title %}
+  <title>{{ this.title }} · {{ config.title }}</title>
+  {% else %}
+  <title>{{ config.title }}</title>
+  {% endif %}
+  {% endblock title %}
+  {% if config.description %}<meta name="description" content="{{ config.description }}">{% endif %}
+
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="danielc" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <link rel="preload" href="{{ get_url(path='fonts/newsreader-normal.woff2') | safe }}" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="{{ get_url(path='main.css') | safe }}">
+
+  {% if config.extra.math %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$', right: '$', display: false}
+    ]});"></script>
+  {% endif %}
+</head>
+
+<body>
+  {% block nav %}
+  <header class="site-header">
+    <a class="site-title" href="{{ get_url(path='/') | safe }}">{{ config.title }}</a>
+    <nav class="site-nav">
+      <a href="{{ get_url(path='/babble/') | safe }}"
+        {%- if current_path and current_path is starting_with("/babble") %} class="active"{% endif %}>Babble</a>
+      <a href="{{ get_url(path='/prune/') | safe }}"
+        {%- if current_path and current_path is starting_with("/prune") %} class="active"{% endif %}>Prune</a>
+      <a href="{{ get_url(path='/notes/') | safe }}"
+        {%- if current_path and current_path is starting_with("/notes") %} class="active"{% endif %}>Lecture Notes</a>
+    </nav>
+  </header>
+  {% endblock nav %}
+
+  <main>
+    {% block top %}{% endblock top %}
+    {% block content %}{% endblock content %}
+    {% block bottom %}{% endblock bottom %}
+  </main>
+
+  {% block footer %}{% endblock footer %}
+
+  {# scrollspy: highlight the table-of-contents entry for the current heading #}
+  <script>
+    (function () {
+      var toc = document.querySelector('.toc');
+      if (!toc) return;
+      var links = {};
+      Array.prototype.forEach.call(toc.querySelectorAll('a[href*="#"]'), function (a) {
+        var id = decodeURIComponent((a.hash || '').slice(1));
+        if (id) links[id] = a;
+      });
+      var headings = Array.prototype.filter.call(
+        document.querySelectorAll('.lecture h2[id], .lecture h3[id]'),
+        function (h) { return links[h.id]; });
+      if (!headings.length) return;
+
+      var current = null;
+      function setActive(id) {
+        if (id === current) return;
+        if (current && links[current]) links[current].classList.remove('active');
+        current = id;
+        if (id && links[id]) links[id].classList.add('active');
+      }
+      function update() {
+        var offset = 50, active = headings[0].id;
+        for (var i = 0; i < headings.length; i++) {
+          if (headings[i].getBoundingClientRect().top <= offset) active = headings[i].id;
+          else break;
+        }
+        setActive(active);
+      }
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (!ticking) { window.requestAnimationFrame(function () { update(); ticking = false; }); ticking = true; }
+      }, { passive: true });
+      window.addEventListener('resize', update, { passive: true });
+      update();
+    })();
+  </script>
+
+  {# click a heading pilcrow to copy its link #}
+  <script>
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest ? e.target.closest('a.heading-anchor') : null;
+      if (!a) return;
+      e.preventDefault();
+      var url = a.href;
+      function feedback() {
+        a.classList.add('copied');
+        window.setTimeout(function () { a.classList.remove('copied'); }, 1200);
+      }
+      function fallback() {
+        var t = document.createElement('textarea');
+        t.value = url; t.style.position = 'fixed'; t.style.opacity = '0';
+        document.body.appendChild(t); t.focus(); t.select();
+        try { document.execCommand('copy'); } catch (err) {}
+        document.body.removeChild(t);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(feedback, function () { fallback(); feedback(); });
+      } else { fallback(); feedback(); }
+      if (a.hash) { try { history.replaceState(null, '', a.hash); } catch (err) {} }
+    });
+  </script>
+</body>
+
+</html>

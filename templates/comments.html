@@ -1,0 +1,26 @@
+{# GitHub-backed comments via giscus (https://giscus.app).
+   Renders only once the repo/category IDs are filled into config.toml's
+   [extra.giscus] table, so the site keeps building before setup is done. #}
+{% set g = config.extra.giscus | default(value = false) %}
+{% if g and g.repo_id and g.category_id %}
+<section class="comments">
+  <h2 class="comments-title">Comments</h2>
+  <script src="https://giscus.app/client.js"
+    data-repo="{{ g.repo }}"
+    data-repo-id="{{ g.repo_id }}"
+    data-category="{{ g.category | default(value='Announcements') }}"
+    data-category-id="{{ g.category_id }}"
+    data-mapping="{{ g.mapping | default(value='pathname') }}"
+    data-strict="1"
+    data-reactions-enabled="{{ g.reactions | default(value='1') }}"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="{{ get_url(path='giscus.css') | safe }}"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+  <noscript>Comments are powered by GitHub Discussions and require JavaScript.</noscript>
+</section>
+{% endif %}
