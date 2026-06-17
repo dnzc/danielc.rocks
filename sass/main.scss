@@ -489,16 +489,6 @@ img { max-width: 100%; }
   padding-top: 2rem;
   border-top: 1px solid var(--border);
 
-  .comments-title {
-    margin: 0 0 1rem;
-    font-size: 1.1rem;
-    text-align: left;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-weight: 600;
-  }
-
   .giscus, .giscus-frame { width: 100%; }
   .giscus-frame { border: none; color-scheme: light dark; }
 }

@@ -1,8 +1,27 @@
-/* Custom giscus theme — Catppuccin Mocha, matched to danielc.rocks.
-   Referenced as a remote theme via data-theme; giscus injects it into the
-   comment iframe. Palette + fonts mirror sass/main.scss. */
+/* Custom giscus theme — catppuccin mocha */
 
-@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap");
+/* Self-hosted fonts */
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("https://danielc.rocks/fonts/newsreader-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("https://danielc.rocks/fonts/newsreader-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url("https://danielc.rocks/fonts/jetbrains-mono.woff2") format("woff2");
+}
 
 main {
   /* Catppuccin Mocha */
@@ -92,7 +111,7 @@ main {
   --color-social-reaction-bg-hover: #45475a;
 
   /* match the site's typography */
-  font-family: "EB Garamond", Cambria, serif;
+  font-family: "Newsreader", Cambria, serif;
 }
 
 main .gsc-comment-box-tabs,
@@ -101,7 +120,7 @@ main .gsc-comment-author,
 main .gsc-reactions-count,
 main .gsc-header,
 main .gsc-comments {
-  font-family: "EB Garamond", Cambria, serif;
+  font-family: "Newsreader", Cambria, serif;
 }
 
 main .gsc-comment-content code,

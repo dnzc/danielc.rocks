@@ -34,8 +34,8 @@ math = true
 # and paste the two ids it gives you.
 [extra.giscus]
 repo = "dnzc/danielc.rocks"
-repo_id = ""           # e.g. "R_kgD..."
+repo_id = "R_kgDOPgp26A"
 category = "Announcements"
-category_id = ""       # e.g. "DIC_kwD..."
+category_id = "DIC_kwDOPgp26M4C_Q55"
 mapping = "pathname"   # one discussion thread per page path
-reactions = "1"
+reactions = "0"        # hide the reactions bar above the comment list

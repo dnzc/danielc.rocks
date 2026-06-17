@@ -21,12 +21,15 @@
   <meta name="apple-mobile-web-app-title" content="danielc" />
   <link rel="manifest" href="/site.webmanifest" />
 
+  <meta name="author" content="dnzc" />
+
   <link rel="preload" href="{{ get_url(path='fonts/newsreader-normal.woff2') | safe }}" as="font" type="font/woff2" crossorigin>
 
   {% if config.extra.math %}
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  {# KaTeX 0.16.9, self-hosted under static/katex (no third-party CDN) #}
+  <link rel="stylesheet" href="{{ get_url(path='katex/katex.min.css') | safe }}">
+  <script defer src="{{ get_url(path='katex/katex.min.js') | safe }}"></script>
+  <script defer src="{{ get_url(path='katex/contrib/auto-render.min.js') | safe }}"
     onload="renderMathInElement(document.body, {delimiters: [
       {left: '$$', right: '$$', display: true},
       {left: '$', right: '$', display: false}
