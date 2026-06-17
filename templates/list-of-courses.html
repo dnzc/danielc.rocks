@@ -13,13 +13,13 @@
     {%- set lecturer = course.extra.lecturer | default(value="") -%}
     <a class="course-card" href="{{ course.permalink | safe }}">
       <div class="course-card-head">
-        {% if course.extra.unfinished %}<span class="card-ribbon">Unfinished</span>{% endif %}
         <img class="course-card-bg"
           src="{{ get_url(path=course.extra.image | default(value='img/note-placeholder.svg')) | safe }}"
           alt="" loading="lazy">
         <div class="course-card-headinner">
           <div class="course-meta">
-            {{- part }} {{ term }} {{ year }}{% if lecturer %} • {{ lecturer }}{% endif -%}
+            {{- part }} {{ term }} {{ year }}{% if lecturer %} • {{ lecturer }}{% endif %}
+            {%- if course.extra.unfinished %} • <span class="course-unfinished">Unfinished</span>{% endif -%}
           </div>
           <div class="course-card-title">{{ course.title }}</div>
         </div>

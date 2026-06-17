@@ -12,7 +12,7 @@
   --links: #94e2d5;               // teal
   --hover: #cba6f7;               // mauve
   --inline-code: #eba0ac;         // maroon
-  --warning: #f9e2af;             // yellow (e.g. "unfinished" sash)
+  --warning: #f9e2af;             // yellow (warnings / callouts)
 }
 
 @font-face {
@@ -221,6 +221,7 @@ h4 { font-size: 1rem; margin: 1.5rem 0 0.4rem; }
   color: var(--text-bright);
   margin-bottom: 0.1rem;
 }
+.course-unfinished { color: var(--warning); }
 .course-card-title {
   font-size: 1.45rem;
   font-weight: 700;
@@ -513,29 +514,6 @@ img { max-width: 100%; }
   .giscus, .giscus-frame { width: 100%; }
   .giscus-frame { border: none; color-scheme: light dark; }
 }
-
-// "unfinished" corner ribbon on a course card
-.card-ribbon {
-  position: absolute;
-  top: 1.2rem;
-  right: -2.6rem;
-  width: 9rem;
-  transform: rotate(45deg);
-  text-align: center;
-  background: var(--warning);
-  color: var(--background-body);
-  font-family: $mono;
-  font-size: 0.6rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.18rem 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-  pointer-events: none;
-  z-index: 2;
-}
-// keep the title/meta from running under the corner ribbon on narrow cards
-.card-ribbon ~ .course-card-headinner { padding-right: 3.2rem; }
 
 .tangent {
   summary {
