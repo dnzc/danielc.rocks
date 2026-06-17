@@ -12,7 +12,37 @@
   <title>{{ config.title }}</title>
   {% endif %}
   {% endblock title %}
+
+  {% if current_path and current_path != "/" and this and this.title %}
+    {% set page_title = this.title ~ " · " ~ config.title %}
+  {% else %}
+    {% set page_title = config.title %}
+  {% endif %}
+
+  {% set canonical = this.permalink | default(value = config.base_url ~ "/") %}
+  {% set og_image = get_url(path='opengraph.png') %}
+  {% if page and page.date %}{% set og_type = "article" %}{% else %}{% set og_type = "website" %}{% endif %}
+
   {% if config.description %}<meta name="description" content="{{ config.description }}">{% endif %}
+  <link rel="canonical" href="{{ canonical | safe }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ config.title }} — Posts" href="{{ get_url(path='posts/rss.xml') | safe }}">
+
+  <meta property="og:type" content="{{ og_type }}">
+  <meta property="og:site_name" content="{{ config.title }}">
+  <meta property="og:title" content="{{ page_title }}">
+  {% if config.description %}<meta property="og:description" content="{{ config.description }}">{% endif %}
+  <meta property="og:url" content="{{ canonical | safe }}">
+  <meta property="og:image" content="{{ og_image | safe }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  {% if og_type == "article" and page.date %}
+  <meta property="article:published_time" content="{{ page.date | date(format='%Y-%m-%dT%H:%M:%SZ') }}">
+  {% endif %}
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page_title }}">
+  {% if config.description %}<meta name="twitter:description" content="{{ config.description }}">{% endif %}
+  <meta name="twitter:image" content="{{ og_image | safe }}">
 
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -21,9 +51,11 @@
   <meta name="apple-mobile-web-app-title" content="danielc" />
   <link rel="manifest" href="/site.webmanifest" />
 
-  <meta name="author" content="dnzc" />
+  <meta name="author" content="Daniel Chen" />
 
   <link rel="preload" href="{{ get_url(path='fonts/newsreader-normal.woff2') | safe }}" as="font" type="font/woff2" crossorigin>
+
+  <script data-goatcounter="https://dnzc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
   {% if config.extra.math %}
   {# KaTeX 0.16.9, self-hosted under static/katex (no third-party CDN) #}

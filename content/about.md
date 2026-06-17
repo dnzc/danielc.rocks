@@ -7,7 +7,7 @@ template = "plainpage.html"
 
 ## Attribution
 
-The design of this site is based on [cgad.ski](https://cgad.ski/blog/entropy-of-a-mixture.html)'s beautiful math explainers. I also took inspiration from [ekunazanu.foo](https://ekunazanu.foo) for this About page, and the GOAT [Giles Castel](https://castel.dev/notes) for the Lecture Notes page. The colourscheme of this site is [Atom One Light](https://marketplace.visualstudio.com/items?itemName=akamud.vscode-theme-onelight); the main typeface is [Newsreader](https://fonts.google.com/specimen/Newsreader) and the monospace is [JetBrains Mono](https://www.jetbrains.com/lp/mono/).
+The design of this site is based on [cgad.ski](https://cgad.ski/blog/entropy-of-a-mixture.html)'s beautiful math explainers. I also took heavy inspiration from [ekunazanu.foo](https://ekunazanu.foo), and from the GOAT [Giles Castel](https://castel.dev/notes) for the Lecture Notes page. The colourscheme of this site is [Atom One Light](https://marketplace.visualstudio.com/items?itemName=akamud.vscode-theme-onelight); the main typeface is [Newsreader](https://fonts.google.com/specimen/Newsreader) and the monospace is [JetBrains Mono](https://www.jetbrains.com/lp/mono/).
 
 This entire website is just a bunch of Markdown files, compiled using [Zola](https://www.getzola.org/) (see why I chose to use it [here](/posts/rebirth)).
 

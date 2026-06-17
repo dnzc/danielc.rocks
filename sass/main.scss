@@ -125,6 +125,18 @@ a:hover { color: var(--hover); }
 .list-of-posts a:hover { text-decoration-color: var(--hover); }
 .prose a.heading-anchor { text-decoration: none; } // skip pilcrows
 
+// RSS subscribe link on the posts list
+.rss-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  svg { display: block; }
+}
+.rss-link:hover { color: var(--hover); }
+
 // footnotes (bottom_footnotes=true in Zola config)
 .prose .footnote-reference {
   font-size: 0.75em;
