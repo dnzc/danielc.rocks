@@ -23,19 +23,4 @@ bottom_footnotes = true
 
 [extra]
 author = "Daniel Chen"
-
-# Load KaTeX for math rendering ($...$ inline, $$...$$ display)
 math = true
-
-# GitHub-backed comments via giscus (https://giscus.app).
-# Comments render only once repo_id + category_id are filled in below.
-# Setup: enable Discussions on the repo, install the giscus GitHub App
-# (https://github.com/apps/giscus), then run the configurator at giscus.app
-# and paste the two ids it gives you.
-[extra.giscus]
-repo = "dnzc/danielc.rocks"
-repo_id = "R_kgDOPgp26A"
-category = "Announcements"
-category_id = "DIC_kwDOPgp26M4C_Q55"
-mapping = "pathname"   # one discussion thread per page path
-reactions = "0"        # hide the reactions bar above the comment list
