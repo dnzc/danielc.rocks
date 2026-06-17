@@ -289,19 +289,40 @@ h6:hover > .heading-anchor { opacity: 1; }
   font-weight: 400;
 }
 
-// theorem-like boxes (theorem, lemma, definition, etc)
+// theorem-like boxes (theorem, lemma, definition, etc).
+// Colour-coded by kind: a thin left accent stripe + tinted label, while the
+// rest stays monochrome so the page still reads calm. The accent doubles as
+// meaning — you can tell a Definition from a Theorem at a glance. Hues are
+// straight from the Catppuccin palette.
+$thm-accents: (
+  definition:  #89b4fa, // blue
+  theorem:     #cba6f7, // mauve
+  proposition: #a6e3a1, // green
+  lemma:       #94e2d5, // teal
+  corollary:   #89dceb, // sky
+  example:     #fab387, // peach
+);
+
 .thmbox {
+  --thm-accent: var(--card-border); // fallback for any unlisted kind
   counter-increment: thm;
   margin: 1.5rem 0;
   padding: 0.75rem 1rem;
-  border: 1px solid var(--card-border); // four grey lines
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--thm-accent);
   border-radius: 4px;
+  // barely-there wash of the accent so the box reads tinted, not loud
+  background: color-mix(in srgb, var(--thm-accent) 7%, transparent);
+}
+@each $kind, $colour in $thm-accents {
+  .thmbox-#{$kind} { --thm-accent: #{$colour}; }
 }
 .thmbox-head {
   margin: 0 0 0.35rem;
   font-weight: 600;
   color: var(--text-bright);
 }
+.thmbox-name { color: var(--thm-accent); }
 .thmbox-name::after { content: " " counter(sec) "." counter(thm); }
 .thmbox-title { font-weight: 400; color: var(--text-muted); }
 .thmbox-body > :first-child { margin-top: 0; }
@@ -349,7 +370,7 @@ h6:hover > .heading-anchor { opacity: 1; }
     box-sizing: border-box;
     width: 1.75rem;
     height: 1.75rem;
-    border: 2px solid var(--text-bright);
+    border: 2px solid #fab387; // peach — matches the "example" accent
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -358,7 +379,7 @@ h6:hover > .heading-anchor { opacity: 1; }
     font-weight: 700;
     line-height: 1;
     padding-top: 0.1rem;
-    color: var(--text-bright);
+    color: #fab387;
   }
 }
 

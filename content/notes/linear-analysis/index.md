@@ -96,6 +96,6 @@ In a normed space $X$, a useful object is the **unit ball** $B_X = \\{ x \in X \
 
 5. Let $S$ denote the set of all scalar sequences. This is a vector space in the coordinate-wise operations: $(x_n) + (y_n) = (x_n + y_n), \lambda \cdot (x_n) = (\lambda x_n)$.
 
-    $\ell_1 = \\{(x_n) \in S \mid \sum_{n=1}^{\infty} |x_n| < \infty\\},\\; \lVert (x_n) \rVert_1 = \sum_{n=1}^\infty |x_n|$ (**$\ell_1$ norm**).
+    $\ell_1 = \\{(x_n) \in S \mid \sum_{n=1}^{\infty} |x_n| < \infty\\},\\; \lVert (x_n) \rVert_1 = \sum_{n=1}^\infty |x_n|$ (the **$\ell_1$-norm**).
 
 {% end %}
