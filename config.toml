@@ -11,9 +11,6 @@ compile_sass = true
 # Build a search index from page content (handy once the notes pile up)
 build_search_index = true
 
-# Use the RSS template for any section that opts in via `generate_feeds`
-feed_filenames = ["rss.xml"]
-
 [markdown]
 # Syntax highlighting for code blocks in notes
 # highlighting = "one-dark"

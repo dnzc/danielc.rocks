@@ -25,7 +25,6 @@
 
   {% if config.description %}<meta name="description" content="{{ config.description }}">{% endif %}
   <link rel="canonical" href="{{ canonical | safe }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ config.title }} — Posts" href="{{ get_url(path='posts/rss.xml') | safe }}">
 
   <meta property="og:type" content="{{ og_type }}">
   <meta property="og:site_name" content="{{ config.title }}">
