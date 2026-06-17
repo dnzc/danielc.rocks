@@ -3,7 +3,7 @@ title="Summer plans"
 date="2026-06-16"
 +++
 
-Just finished [university exams](https://www.maths.cam.ac.uk/undergrad/files/coursesII.pdf), feeling pretty empty right now... what to do except get drunk?
+Just finished [university exams](https://tartarus.org/gareth/maths/course-o-meter/ii/7k0e8k0g4), feeling pretty empty right now... what to do except get drunk?
 
 (Clickbait title, I don't have any summer plans)
 

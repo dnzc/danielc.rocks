@@ -16,7 +16,7 @@
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
      id="namedview1"
-     pagecolor="#1e1e2e"
+     pagecolor="#ffffff"
      bordercolor="#000000"
      borderopacity="0.25"
      inkscape:showpageshadow="2"
@@ -25,43 +25,44 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="1.4060337"
-     inkscape:cx="295.51212"
+     inkscape:cx="295.15651"
      inkscape:cy="51.207876"
-     inkscape:window-width="1224"
-     inkscape:window-height="763"
-     inkscape:window-x="168"
-     inkscape:window-y="90"
+     inkscape:window-width="1712"
+     inkscape:window-height="1073"
+     inkscape:window-x="0"
+     inkscape:window-y="39"
      inkscape:window-maximized="0"
      inkscape:current-layer="layer1" />
   <defs
      id="defs1">
     <pattern
        inkscape:collect="always"
-       xlink:href="#Strips1_2"
+       xlink:href="#Strips1_1.5"
        preserveAspectRatio="xMidYMid"
-       id="pattern7"
-       patternTransform="matrix(1.7320508,1,-1,1.7320508,0,0)"
+       id="pattern5"
+       patternTransform="matrix(1.4142136,1.4142136,-1.4142136,1.4142136,0,0)"
        x="0"
        y="0" />
     <pattern
        inkscape:collect="always"
        patternUnits="userSpaceOnUse"
-       width="3"
+       width="2.5"
        height="1"
        patternTransform="translate(0,0) scale(2,2)"
        preserveAspectRatio="xMidYMid"
-       id="Strips1_2"
-       style="fill:#bac2de;fill-opacity:1"
-       inkscape:stockid="Stripes 03 (1:2)"
+       id="Strips1_1.5"
+       style="fill:#000000"
+       inkscape:stockid="Stripes 02 (2:3)"
        inkscape:isstock="true"
-       inkscape:label="Stripes 03 (1:2)">
+       inkscape:label="Stripes 02 (2:3)">
       <rect
-         style="stroke:none;fill-opacity:1.0;fill:#bac2de"
-         x="0"
-         y="-0.5"
-         width="1"
-         height="2"
-         id="rect146" />
+   style="stroke:none"
+   x="0"
+   y="-0.5"
+   width="1"
+   height="2"
+   id="rect140" />
+
     </pattern>
     <marker
        style="overflow:visible"
@@ -173,50 +174,51 @@
      id="layer1"
      transform="translate(-48.324742,-36.042754)">
     <path
-       style="font-variation-settings:'wght' 700;fill:#4d4d4d;stroke:#666666;stroke-width:1;stroke-linejoin:round;stroke-opacity:1;marker-start:url(#Triangle)"
+       style="font-variation-settings:'wght' 700;fill:#4d4d4d;stroke:#b3b3b3;stroke-width:1;stroke-linejoin:round;stroke-opacity:1;marker-start:url(#Triangle)"
        d="M 92.627764,39.593829 V 122.77719"
        id="path1" />
     <path
-       style="font-variation-settings:'wght' 700;fill:#4d4d4d;stroke:#666666;stroke-width:1;stroke-linejoin:round;stroke-opacity:1;marker-end:url(#Triangle)"
+       style="font-variation-settings:'wght' 700;fill:#4d4d4d;stroke:#b3b3b3;stroke-width:1;stroke-linejoin:round;stroke-opacity:1;marker-end:url(#Triangle)"
        d="M 48.324742,82.642312 H 132.60122"
        id="path2" />
     <circle
-       style="font-variation-settings:'wght' 700;fill:url(#pattern7);fill-opacity:1;stroke:#bac2de;stroke-width:1;stroke-linejoin:round;stroke-opacity:1"
+       style="font-variation-settings:'wght' 700;fill:url(#pattern5);fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-opacity:1"
        id="path3"
        cx="92.680786"
        cy="82.875771"
        r="28.014343" />
     <g
        id="g1"
-       transform="matrix(6,0,0,6,-640.0368,-207.27663)">
+       transform="matrix(6,0,0,6,-640.0368,-207.27663)"
+       style="fill:#000000">
       <use
          xlink:href="#glyph-0-0-00"
          x="5.3130002"
          y="8.8000002"
          id="use3"
          transform="matrix(0.26458333,0,0,0.26458333,123.53656,40.808562)"
-         style="fill:#bac2de;fill-opacity:1" />
+         style="fill:#000000;fill-opacity:1" />
       <use
          xlink:href="#glyph-1-0-6"
          x="12.87"
          y="10.981"
          id="use4"
          transform="matrix(0.26458333,0,0,0.26458333,123.53656,40.808562)"
-         style="fill:#bac2de;fill-opacity:1" />
+         style="fill:#000000;fill-opacity:1" />
       <use
          xlink:href="#glyph-2-0-0"
          x="16.205"
          y="8.5780001"
          id="use5"
          transform="matrix(0.26458333,0,0,0.26458333,123.53656,40.808562)"
-         style="fill:#bac2de;fill-opacity:1" />
+         style="fill:#000000;fill-opacity:1" />
       <use
          xlink:href="#glyph-2-0-0"
          x="16.205"
          y="13.143"
          id="use6"
          transform="matrix(0.26458333,0,0,0.26458333,123.53656,40.808562)"
-         style="fill:#bac2de;fill-opacity:1" />
+         style="fill:#000000;fill-opacity:1" />
     </g>
   </g>
 </svg>

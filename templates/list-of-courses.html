@@ -12,7 +12,7 @@
     {%- set year = course.extra.year | default(value="") -%}
     {%- set lecturer = course.extra.lecturer | default(value="") -%}
     <a class="course-card" href="{{ course.permalink | safe }}">
-      <div class="course-card-head">
+      <div class="course-card-head"{% if course.extra.color %} style="background: {{ course.extra.color }}"{% endif %}>
         <img class="course-card-bg"
           src="{{ get_url(path=course.extra.image | default(value='img/note-placeholder.svg')) | safe }}"
           alt="" loading="lazy">

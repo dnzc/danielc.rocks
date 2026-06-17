@@ -12,8 +12,7 @@ build_search_index = true
 
 [markdown]
 # Syntax highlighting for code blocks in notes
-highlight_code = true
-highlight_theme = "one-dark"
+# highlighting = "one-dark"
 # Auto-insert a permalink anchor (rendered as ¶ via templates/anchor-link.html)
 # to the right of every heading.
 insert_anchor_links = "right"

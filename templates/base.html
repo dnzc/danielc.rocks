@@ -45,10 +45,8 @@
   <header class="site-header">
     <a class="site-title" href="{{ get_url(path='/') | safe }}">{{ config.title }}</a>
     <nav class="site-nav">
-      <a href="{{ get_url(path='/babble/') | safe }}"
-        {%- if current_path and current_path is starting_with("/babble") %} class="active"{% endif %}>Babble</a>
-      <a href="{{ get_url(path='/prune/') | safe }}"
-        {%- if current_path and current_path is starting_with("/prune") %} class="active"{% endif %}>Prune</a>
+      <a href="{{ get_url(path='/posts/') | safe }}"
+        {%- if current_path and current_path is starting_with("/posts") %} class="active"{% endif %}>Posts</a>
       <a href="{{ get_url(path='/notes/') | safe }}"
         {%- if current_path and current_path is starting_with("/notes") %} class="active"{% endif %}>Lecture&nbsp;Notes</a>
     </nav>

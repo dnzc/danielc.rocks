@@ -7,7 +7,8 @@ part = "Part II"
 term = "Mich"
 year = "2025"
 lecturer = "Dr András Zsák"
-# image = "notes/linear-analysis/unitball_l2.svg"
+color = "#e4564922"
+image = "notes/linear-analysis/thumbnail.svg"
 unfinished = true
 +++
 
@@ -80,6 +81,10 @@ In a normed space $X$, a useful object is the **unit ball** $B_X = \\{ x \in X \
   <img src="unitball_l1.svg" alt="l_1 unit ball" style="flex: 1 1 10rem; max-width: 8rem; height: auto;">
   <img src="unitball_linf.svg" alt="l_inf unit ball" style="flex: 1 1 10rem; max-width: 8rem; height: auto;">
 </div>
+
+{% tangent(summary="Sidenote: did I accidentally create an optical illusion?") %}
+It might just be me, but the axes seem all wonky...
+{% end %}
 
 #### Remarks
 

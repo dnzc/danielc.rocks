@@ -1,18 +1,18 @@
-// Catppuccin Mocha
+// Atom One Light
 :root {
-  --background-body: #1e1e2e;     // base
-  --background: #313244;          // surface0 (code / panels)
-  --background-overlay: #45475a;  // surface1 (overlay)
-  --border: #45475a;              // surface1 (dividers)
-  --card-border: #6c7086;         // overlay0 (card / box outlines)
-  --selection: #585b70;           // surface2 (highlight)
-  --text-main: #bac2de;           // subtext1 (slightly grey)
-  --text-bright: #cdd6f4;         // headings/titles
-  --text-muted: #9399b2;          // overlay2 (subtle)
-  --links: #94e2d5;               // teal
-  --hover: #cba6f7;               // mauve
-  --inline-code: #eba0ac;         // maroon
-  --warning: #f9e2af;             // yellow (warnings / callouts)
+  --background-body: #fafafa;     // bg
+  --background: #f0f0f1;          // bg2 (code / panels)
+  --background-overlay: #e5e5e6;  // bg3
+  --border: #e5e5e6;              // bg3 (dividers)
+  --card-border: #d4d4d5;         // bg4 (card outlines)
+  --selection: #e5e5e6;           // bg3
+  --text-main: #383a42;           // fg
+  --text-bright: #383a42;         // fg
+  --text-muted: #a0a1a7;          // comment
+  --links: #4078f2;               // blue
+  --hover: #a626a4;               // purple
+  --inline-code: #e45649;         // red
+  --warning: #c18401;             // yellow
 }
 
 @font-face {
@@ -83,12 +83,13 @@ main {
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border);
 }
-.site-title { font-size: 1.1rem; color: var(--text-bright); }
-.site-nav a { margin-left: 1.25rem; color: var(--text-muted); }
+.site-title { font-size: 1.1rem; color: var(--text-bright); font-weight: 700; }
+.site-nav a { margin-left: 1.25rem; color: var(--text-main); }
 .site-nav a:first-child { margin-left: 0; }
 .site-nav a:hover { color: var(--hover); }
 .site-nav a.active { color: var(--text-bright); }
 .site-nav a.active::before { content: "→\00a0"; } // %nbsp
+
 
 .site-footer {
   max-width: 40rem;
@@ -164,15 +165,14 @@ h4 { font-size: 1rem; margin: 1.5rem 0 0.4rem; }
   margin-bottom: 2.5em;
   font-size: 0.9rem;
 }
-.article-top a { color: var(--text-muted); }
+.article-top a { color: var(--links); }
 .article-top a:hover { color: var(--hover); }
-.article-top .date { color: var(--text-muted); }
 
 .article-end {
   margin-top: 2.5em;
   font-size: 0.9rem;
 }
-.article-end a { color: var(--text-muted); }
+.article-end a { color: var(--links); }
 .article-end a:hover { color: var(--hover); }
 
 // course list
@@ -185,8 +185,8 @@ h4 { font-size: 1rem; margin: 1.5rem 0 0.4rem; }
 .course-card {
   display: block;
   color: var(--text-main);
-  border: 2px solid var(--card-border);
-  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
   overflow: hidden;
   transition: border-color 0.12s ease;
 
@@ -198,7 +198,8 @@ h4 { font-size: 1rem; margin: 1.5rem 0 0.4rem; }
 .course-card-head {
   position: relative;
   overflow: hidden;
-  border-bottom: 2px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+  background: var(--background); // fallback when no extra.color set
 }
 .course-card-bg {
   position: absolute;
@@ -206,13 +207,11 @@ h4 { font-size: 1rem; margin: 1.5rem 0 0.4rem; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  mix-blend-mode: multiply; // white → tint colour; dark math content shows through
 }
 .course-card-headinner {
   position: relative;
-  padding: 1.1rem 1.3rem 1.4rem;
-  // slight blur of the background image behind the text, for legibility
-  -webkit-backdrop-filter: blur(3px);
-  backdrop-filter: blur(3px);
+  padding: 1.2rem 1.2rem 0.9rem 1.2rem;
 }
 .course-meta {
   font-size: 0.78rem;
@@ -229,12 +228,11 @@ h4 { font-size: 1rem; margin: 1.5rem 0 0.4rem; }
   color: var(--text-bright);
 }
 .course-card-body {
-  padding: 1rem 1.3rem 1.3rem;
-
+  padding: 1rem 1.2rem 0.9rem 1.2rem;
   p { margin: 0; color: var(--text-main); }
 }
 
-.date { color: var(--text-muted); font-size: 0.88rem; }
+.date { font-size: 0.88rem; }
 
 
 // heading pilcrows
@@ -296,12 +294,12 @@ h6:hover > .heading-anchor { opacity: 1; }
 // meaning — you can tell a Definition from a Theorem at a glance. Hues are
 // straight from the Catppuccin palette.
 $thm-accents: (
-  definition:  #89b4fa, // blue
-  theorem:     #cba6f7, // mauve
-  proposition: #a6e3a1, // green
-  lemma:       #94e2d5, // teal
-  corollary:   #89dceb, // sky
-  example:     #fab387, // peach
+  definition:  #4078f2, // blue
+  theorem:     #a626a4, // purple
+  proposition: #50a14f, // green
+  lemma:       #0184bc, // cyan
+  corollary:   #d75f00, // orange
+  example:     #c18401, // yellow
 );
 
 .thmbox {
@@ -371,7 +369,7 @@ $thm-accents: (
     box-sizing: border-box;
     width: 1.75rem;
     height: 1.75rem;
-    border: 2px solid #fab387; // peach — matches the "example" accent
+    border: 2px solid #d75f00; // orange — matches the "example" accent
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -380,7 +378,7 @@ $thm-accents: (
     font-weight: 700;
     line-height: 1;
     padding-top: 0.1rem;
-    color: #fab387;
+    color: #d75f00;
   }
 }
 
