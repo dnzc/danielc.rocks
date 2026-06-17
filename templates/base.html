@@ -103,7 +103,7 @@
         if (id) links[id] = a;
       });
       var headings = Array.prototype.filter.call(
-        document.querySelectorAll('.lecture h2[id], .lecture h3[id]'),
+        document.querySelectorAll('.course h2[id], .course h3[id]'),
         function (h) { return links[h.id]; });
       if (!headings.length) return;
 
