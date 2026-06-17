@@ -23,8 +23,6 @@
 
   <link rel="preload" href="{{ get_url(path='fonts/newsreader-normal.woff2') | safe }}" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="{{ get_url(path='main.css') | safe }}">
-
   {% if config.extra.math %}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -34,6 +32,9 @@
       {left: '$', right: '$', display: false}
     ]});"></script>
   {% endif %}
+
+  <link rel="stylesheet" href="{{ get_url(path='main.css') | safe }}">
+
 </head>
 
 <body>
@@ -46,7 +47,7 @@
       <a href="{{ get_url(path='/prune/') | safe }}"
         {%- if current_path and current_path is starting_with("/prune") %} class="active"{% endif %}>Prune</a>
       <a href="{{ get_url(path='/notes/') | safe }}"
-        {%- if current_path and current_path is starting_with("/notes") %} class="active"{% endif %}>Lecture Notes</a>
+        {%- if current_path and current_path is starting_with("/notes") %} class="active"{% endif %}>Lecture&nbsp;Notes</a>
     </nav>
   </header>
   {% endblock nav %}

@@ -60,7 +60,7 @@ body {
   padding: 0 1rem;
   font-family: $serif;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.35;
   color: var(--text-main);
   background: var(--background-body);
   word-wrap: break-word;
@@ -154,6 +154,7 @@ h1, h2, h3, h4 {
 h1 { font-size: 1.9rem; margin: 0 0 0.6rem; text-align: center; }
 h2 { font-size: 1.35rem; margin-top: 2.4rem; }
 h3 { font-size: 1.15rem; }
+h4 { font-size: 1rem; margin: 1.5rem 0 0.4rem; }
 
 // top backlink + date
 .article-top {
@@ -209,6 +210,9 @@ h3 { font-size: 1.15rem; }
 .course-card-headinner {
   position: relative;
   padding: 1.1rem 1.3rem 1.4rem;
+  // slight blur of the background image behind the text, for legibility
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
 }
 .course-meta {
   font-size: 0.78rem;
@@ -326,6 +330,38 @@ h6:hover > .heading-anchor { opacity: 1; }
   }
 }
 
+// numbered lists with bold circled markers (wrap list in <div class="circled-list">)
+.prose .circled-list ol {
+  list-style: none;
+  counter-reset: circled;
+  margin: 0.75rem 0;
+  padding-left: 2.8rem;
+
+  > li {
+    counter-increment: circled;
+    position: relative;
+    margin: 1rem 0;
+  }
+  > li::before {
+    content: counter(circled);
+    position: absolute;
+    left: -2.8rem;
+    box-sizing: border-box;
+    width: 1.75rem;
+    height: 1.75rem;
+    border: 2px solid var(--text-bright);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1;
+    padding-top: 0.1rem;
+    color: var(--text-bright);
+  }
+}
+
 // proof (collapsible)
 .proofbox { margin: 1.25rem 0; }
 .proofbox > summary {
@@ -421,6 +457,12 @@ blockquote {
   color: var(--text-muted);
   font-style: italic;
 }
+// prose lists: tighter top/bottom margin (smaller gap after a heading) but
+// more breathing room between items
+.prose ul,
+.prose ol { margin: 0.5rem 0; }
+.prose li { margin: 0.5rem 0; }
+
 img { max-width: 100%; }
 
 // figures: images, SVG diagrams, and looping videos with an optional caption
@@ -481,3 +523,16 @@ img { max-width: 100%; }
   pointer-events: none;
   z-index: 2;
 }
+// keep the title/meta from running under the corner ribbon on narrow cards
+.card-ribbon ~ .course-card-headinner { padding-right: 3.2rem; }
+
+.tangent {
+  summary {
+    cursor: pointer;
+  }
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-family: $mono;
+}
+
+.katex { font-size: 1.1em; }
