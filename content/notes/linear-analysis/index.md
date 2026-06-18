@@ -97,7 +97,7 @@ It might just be me, but the axes seem all wonky...
 {% examples() %}
 4. $\ell_p^n = (\mathbb{R}^n, \lVert \cdot \rVert_p)$, where $1 \leq p < \infty$, $\lVert x \rVert_p = \left(\sum_{i=1}^n |x_i|^p\right)^{1/p}$ (the **$\ell_p$-norm**).
 
-    (i), (ii) easy, (iii) not obvious (see {{ref(label="minkowski")}}).
+    (i), (ii) easy, (iii) not obvious (done later; see {{ref(label="minkowski")}}).
 
 5. Let $S$ denote the set of all scalar sequences. This is a vector space in the coordinate-wise operations: $(x_n) + (y_n) = (x_n + y_n), \lambda \cdot (x_n) = (\lambda x_n)$.
 
@@ -136,9 +136,7 @@ It might just be me, but the axes seem all wonky...
 
 {% end %}
 
-{% tangent(summary="Examples 5-8 are called sequence spaces.") %}
-They are "infinite-dimensional analogues" of examples 1-4.
-{% end %}
+Examples 5-8 are called **sequence spaces**. They are "infinite-dimensional analogues" of examples 1-4.
 
 ### Inequalities of Minkowski and Hölder
 
@@ -150,7 +148,7 @@ Recall that a function $f : (0, \infty) \to \mathbb{R}$ is **convex** if
 $$f((1-t)x+ty) \leq (1-t)f(x) + tf(y) \\;\forall\\; x,y \in (0,\infty) \\;\forall\\; t \in [0,1]$$
 and **concave** if $\geq$.
 
-{% lemma() %}
+{% lemma(label="x^p-is-convex") %}
 Let $1 \leq p < \infty$. Then $x \mapsto x^p: (0,\infty) \to \mathbb{R}$ is convex.
 {% end %}
 
@@ -169,17 +167,91 @@ $$g'(x) = p(1-t)\left((1-t)x + ty\right)^{p-1} - p(1-t)x^{p-1}.$$
 If $0 < x < y$ then $g'(x) \geq 0$. If $y < x$ then $g'(x) \leq 0$. In either case, by MVT have $g(x) \leq g(y) = 0 \\;\forall\\; x \in (0, \infty)$.
 {% end %}
 
-{% theorem(name="Minkowski", label="minkowski") %}
+{% theorem(name="Minkowski") %}
 Let $1 \leq p < \infty$, $n \in \mathbb{N}$. For $x,y \in \mathbb{R}^n$ (or $\mathbb{C}^n$),
-$$\lVert x + y \rVert_p \leq \lVert x \rVert_p + \lVert y \rVert_p.$$
+$$\lVert x + y \rVert_p \leq \lVert x \rVert_p + \lVert y \rVert_p$$
 {% end %}
 
 (This shows that $\ell_p^n = (\mathbb{R}^n, \lVert\cdot\rVert_p)$ and $(\ell_p, \lVert\cdot\rVert_p)$ are normed spaces.)
 
-{% proof(ref="minkowski") %}
-todo
+{% proof(of="Minkowski") %}
+Let $B = \\{x \in \mathbb{R}^n \mid \lVert x \rVert_p \leq 1\\}$. We will show $B$ is a convex set later (necessary). Then we complete the proof as follows:
+
+Let $x,y \in \mathbb{R}^n$. *Need* $\lVert x+y \rVert_p \leq \lVert x \rVert_p + \lVert y \rVert_p$. WLOG $x,y,x+y$ nonzero.
+
+$$\begin{aligned}
+\frac{x+y}{\lVert x \rVert_p + \lVert y \rVert_p} &= \frac{\lVert x \rVert_p}{\lVert x \rVert_p + \lVert y \rVert_p} \cdot \frac{x}{\lVert x \rVert_p} + \frac{\lVert y \rVert_p}{\lVert x \rVert_p + \lVert y \rVert_p} \cdot \frac{y}{\lVert y \rVert_p}\\\\
+& \in B \text{ since convex combination of elts of } B.
+\end{aligned}$$ 
+
+Hence $\lVert \frac{x+y}{\lVert x \rVert_p + \lVert y \rVert_p} \rVert_p \leq 1$, so $\lVert x+y \rVert_p \leq \lVert x \rVert_p + \lVert y \rVert_p \\; \checkmark$
+
+- To show $B$ is convex: let $x,y \in B, t \in [0,1]$. *Need* $(1-t)x + ty \in B$.
+
+    For $1 \leq k \leq n$,
+    $$|(1-t)x_k + ty_k|^p \leq \left((1-t)|x_k| + t |y_k| \right)^p \leq (1-t) |x_k|^p + t|y_k|^p$$
+    where the second inequality is by {{ref(label="x^p-is-convex")}} if $x_k \neq 0, y_k \neq 0$, otherwise trivial.
+
+    Sum over $k$:
+
+    $$\lVert (1-t)x + ty \rVert_p^p \leq (1-t) \underbrace{\lVert x \rVert_p^p}\_{\leq 1} + t \underbrace{\lVert y \rVert_p^p}\_{\leq 1} \leq 1 \\; \checkmark$$ 
+
+    So $(1-t)x + ty \in B$.
 {% end %}
 
 {% exercise() %}
 Show that $\ell_p, 1 \leq p \leq \infty$, is complete. (Slick proof later)
+{% end %}
+
+Now onto Hölder.
+
+Let $1 < p < \infty$. The **conjugate index** of $p$ is the unique $q$, $1 < q < \infty$, such that $\frac{1}{p} + \frac{1}{q} = 1$. For example if $p=2$ then $q=2$.
+
+{% lemma(name="Young's inequality") %}
+Let $ 1 < p,q < \infty$ with $\frac{1}{p} + \frac{1}{q} = 1$. Then $\forall a,b \geq 0,$
+$$ab \leq \frac{a^p}{p} + \frac{b^q}{q}$$
+{% end %}
+
+{% proof() %}
+WLOG $a>0, b>0$. Take log of both sides, and use concavity of log.
+{% end %}
+
+{% theorem(name="Hölder") %}
+Let $ 1 < p,q < \infty$ with $\frac{1}{p} + \frac{1}{q} = 1$. Then for $x \in \ell_p, y \in \ell_q$, we have $x \cdot y = (x\_n y\_n) \in \ell\_1$ and
+$$\lVert x \cdot y \rVert\_1 \leq \lVert x \rVert\_p \cdot \lVert y \rVert\_q$$
+{% end %}
+
+#### Remarks
+
+- $p=1, q=\infty$ also works:
+    - Let $x = (x_n) \in \ell_1, y = (y_n) \in \ell_\infty$. Then $\forall n$, $|x_n y_n| = |x_n| \cdot |y_n| \leq |x_n| \cdot \lVert y \rVert_\infty$.
+    - So by comparison test, $x \cdot y = (x_n y_n) \in \ell_1$ and $\lVert x \cdot y \rVert_1 \leq \lVert x \rVert_1 \cdot \lVert y \rVert_\infty$.
+- $p=q=2$ is Cauchy-Schwarz.
+
+{% proof(of="Hölder") %}
+WLOG $x \neq 0, y \neq 0$. By homogeneity, WLOG $\lVert x \rVert_p = \lVert y \rVert_q = 1$.
+
+By Young's inequality, $|x_n y_n| \leq \frac{|x_n|^p}{p} + \frac{|y_n|^q}{q} \\;\forall n$. Sum over $n$:
+$$\begin{aligned}
+\sum_{n=1}^\infty |x_n y_n| &\leq \frac{\lVert x \rVert_p^p}{p} + \frac{\lVert y \rVert_q^q}{q}\\\\
+&= \frac{1}{p} + \frac{1}{q} = 1 = \lVert x \rVert_p \cdot \lVert y \rVert_q.
+\end{aligned}$$
+{% end %}
+
+{% exercise() %}
+Deduce Minkowski from Hölder.
+{% end %}
+
+### More examples of normed spaces
+
+{% examples() %}
+9. $C[0,1] = \big\\{f : [0,1] \to \mathbb{R} \mid f \text{ is continuous}\big\\}$, $\lVert f \rVert_\infty = \sup_{x \in [0,1]} |f(x)|$ (**sup-norm** or **uniform norm**)
+
+    This is a Banach space (recall uniform limit of cts fns is cts).
+
+10. More generally, given a compact Hausdorff space $K$,
+$$C(K) = \big\\{f:K\to\mathbb{R} \mid f \text{ cts}\big\\}$$ 
+is a Banach space in the sup-norm $\lVert f \rVert_\infty = \sup_{x \in K} |f(x)|$.
+(We will look at compact Hausdorff spaces in depth later.)
+
 {% end %}

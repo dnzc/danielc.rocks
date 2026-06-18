@@ -517,3 +517,14 @@ img { max-width: 100%; }
 }
 
 .katex { font-size: 1.1em; }
+
+// Render \text{} inside math with the body serif (Newsreader) instead of
+// KaTeX's default KaTeX_Main. Scoped to .text so math symbols/\mathrm are
+// untouched. Override the per-glyph font classes, where KaTeX sets the family.
+.katex .text {
+  &, .textrm, .textit, .textbf, .mainrm {
+    font-family: $serif;
+  }
+  // Cancel the .katex 1.1em bump so \text{} matches surrounding body text size.
+  font-size: calc(1em / 1.1);
+}
