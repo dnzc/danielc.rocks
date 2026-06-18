@@ -1,5 +1,6 @@
 {%- set nm = name | default(value="") -%}
-<div class="thmbox thmbox-{{ kind | lower }}">
+{%- set label = label | default(value="") -%}
+<div class="thmbox thmbox-{{ kind | lower }}"{% if label %} id="thm-{{ label | slugify }}"{% endif %}>
 <p class="thmbox-head"><span class="thmbox-name">{{ kind }}</span>{% if nm %} <span class="thmbox-title">({{ nm }})</span>{% endif %}</p>
 <div class="thmbox-body">
 

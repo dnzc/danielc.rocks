@@ -33,18 +33,18 @@ A **normed space** is a pair $(X, \lVert \cdot \rVert)$ where $X$ is a vector sp
 {% examples() %}
 
 1. $\ell_2^n = (\mathbb{R}^n, \lVert \cdot \rVert_2)$ (or $(\mathbb{C}^n, \lVert \cdot \rVert_2)$), where
-   $$\lVert x \rVert_2 = \left(\sum_{i=1}^n |x_i|^2 \right)^{1/2}$$
-   for $x = (x_1, \dots, x_n) \in \mathbb{R}^n$ (the **$\ell_2$-norm** or **Euclidean norm**).
+    $$\lVert x \rVert_2 = \left(\sum_{i=1}^n |x_i|^2 \right)^{1/2}$$
+    for $x = (x_1, \dots, x_n) \in \mathbb{R}^n$ (the **$\ell_2$-norm** or **Euclidean norm**).
 
-   Check the three properties: (i), (ii) are easy; (iii) follows from Cauchy–Schwarz.
+    Check the three properties: (i), (ii) are easy; (iii) follows from Cauchy–Schwarz.
 
 2. $\ell_1^n = (\mathbb{R}^n, \lVert \cdot \rVert_1)$, where $\lVert x \rVert_1 = \sum_{i=1}^n |x_i|$ (the **$\ell_1$-norm**).
 
-   (i), (ii) easy; (iii): $|x_i + y_i| \leq |x_i| + |y_i|$, sum over $i$.
+    (i), (ii) easy; (iii): $|x_i + y_i| \leq |x_i| + |y_i|$, sum over $i$.
 
 3. $\ell_{\infty}^n = (\mathbb{R}^n, \lVert \cdot \rVert_{\infty})$, where $\lVert x \rVert_{\infty} = \max_{1 \leq i \leq n} |x_i|$ (the **$\ell_{\infty}$-norm** or **sup-norm**).
 
-   (i), (ii), (iii) easy.
+    (i), (ii), (iii) easy.
 
 {% end %}
 
@@ -97,10 +97,89 @@ It might just be me, but the axes seem all wonky...
 {% examples() %}
 4. $\ell_p^n = (\mathbb{R}^n, \lVert \cdot \rVert_p)$, where $1 \leq p < \infty$, $\lVert x \rVert_p = \left(\sum_{i=1}^n |x_i|^p\right)^{1/p}$ (the **$\ell_p$-norm**).
 
-    (i), (ii) easy, (iii) not obvious (see "Minkowski's inequality" later).
+    (i), (ii) easy, (iii) not obvious (see {{ref(label="minkowski")}}).
 
 5. Let $S$ denote the set of all scalar sequences. This is a vector space in the coordinate-wise operations: $(x_n) + (y_n) = (x_n + y_n), \lambda \cdot (x_n) = (\lambda x_n)$.
 
-    $\ell_1 = \\{(x_n) \in S \mid \sum_{n=1}^{\infty} |x_n| < \infty\\},\\; \lVert (x_n) \rVert_1 = \sum_{n=1}^\infty |x_n|$ (the **$\ell_1$-norm**).
+    $\ell_1 = \Big\\{(x_n) \in S \\;\Big|\\; \sum_{n=1}^{\infty} |x_n| < \infty\Big\\},\\; \lVert (x_n) \rVert_1 = \sum_{n=1}^\infty |x_n|$ (the **$\ell_1$-norm**).
 
+    (i), (ii) easy. (iii): given $x = (x_n), y = (y_n) \in \ell_1$,
+
+    - $|x_n + y_n| \leq |x_n| + |y_n| \\;\forall\\; n \in \mathbb{N}$.
+    - Sum over $n \in \mathbb{N}$ to get that $x + y \in \mathbb{\ell_1}$ and $\lVert x + y \rVert_1 \leq \lVert x \rVert_1 + \lVert y \rVert_1$.
+
+    So $\ell_1$ is a subspace of $S$ and $\lVert \cdot \rVert_1$ is a norm on $\ell_1$.
+
+6. $\ell_2 = \Big\\{(x_n) \in S \\;\Big|\\; \sum_{n=1}^{\infty} |x_n|^2 < \infty\Big\\},\\; \lVert (x_n) \rVert_2 = \left(\sum_{n=1}^\infty |x_n|^2 \right)^{1/2}$ (the **$\ell_2$-norm**).
+
+    (i), (ii) easy. (iii): given $x = (x_n), y = (y_n) \in \ell_2$,
+
+    - $\left(\sum_{k=1}^n |x_k+y_k|^2\right)^{1/2} \leq \left(\sum_{k=1}^n |x_k|^2\right)^{1/2} + \left(\sum_{k=1}^n |y_k|^2\right)^{1/2}$ by triangle inequality in $\ell_2^n$.
+    - Let $n \to \infty$: get that $x + y \in \mathbb{\ell_2}$ and $\lVert x + y \rVert_2 \leq \lVert x \rVert_2 + \lVert y \rVert_2$.
+
+    So $\ell_2$ is a subspace of $S$ and $\lVert \cdot \rVert_2$ is a norm on $\ell_2$.
+
+    More generally, for $1 \leq p < \infty$, $\ell_p = \Big\\{(x_n) \in S \mid \sum_{n=1}^\infty |x_n|^p < \infty \Big\\}$ is a subspace of $S$ and $\lVert (x_n) \rVert_p = \left(\sum_{n=1}^\infty |x_n|^p \right)^{1/p}$ is a norm (the **$\ell_p$-norm**) on $\ell_p$ (once we have the triangle inequality in $\ell_p^n$, which we will do soon).
+
+7. $\ell_\infty = \Big\\{(x_n) \in S \\;\Big|\\; \exists M \geq 0 \quad \forall n \quad |x_n| \leq M \Big\\},\\; \lVert (x_n) \rVert_\infty = \sup_{n \in \mathbb{N}} |x_n|$ (the **$\ell_\infty$-norm** or **sup-norm**).
+
+    (i), (ii) easy. (iii): given $x = (x_n), y = (y_n) \in \ell_\infty$,
+
+    - $|x_n + y_n| \leq |x_n| + |y_n| \leq \lVert x \rVert_\infty + \lVert y \rVert_\infty \\;\forall\\; n \in \mathbb{N}$.
+    - So $x+y \in \ell_\infty$ and $\lVert x+y \rVert_\infty \leq \lVert x \rVert_\infty + \lVert y \rVert_\infty$.
+
+8. $c_0 = \Big\\{(x_n) \in S \\;\Big|\\; x_n \to 0 \text{ as } n \to \infty \Big\\}$
+
+    $c = \Big\\{(x_n) \in S \\;\Big|\\; \lim_{n \to \infty} x_n \text{ exists} \Big\\}$
+
+    These are subspaces of $\ell_\infty$ and hence normed spaces in $\lVert \cdot \rVert_\infty$.
+
+{% end %}
+
+{% tangent(summary="Examples 5-8 are called sequence spaces.") %}
+They are "infinite-dimensional analogues" of examples 1-4.
+{% end %}
+
+### Inequalities of Minkowski and Hölder
+
+{% tangent(summary="tl;dr") %}
+We aim at proving these two ubiquitous inequalities. Minkowski is just the triangle inequality for $\ell_p^n$, and Hölder is a generalisation of Cauchy-Schwarz.
+{% end %}
+
+Recall that a function $f : (0, \infty) \to \mathbb{R}$ is **convex** if
+$$f((1-t)x+ty) \leq (1-t)f(x) + tf(y) \\;\forall\\; x,y \in (0,\infty) \\;\forall\\; t \in [0,1]$$
+and **concave** if $\geq$.
+
+{% lemma() %}
+Let $1 \leq p < \infty$. Then $x \mapsto x^p: (0,\infty) \to \mathbb{R}$ is convex.
+{% end %}
+
+{% proof() %}
+
+We need to show $((1-t)x + ty)^p \leq (1-t)x^p + ty^p \\;\forall\\; x,y \in (0,\infty) \\;\forall\\; t \in [0,1]$.
+
+Fix $y > 0, t \in [0,1]$. Define $g(x)$ to be the difference:
+
+$$g(x) = \left((1-t)x + ty\right)^p - \left((1-t)x^p + ty^p\right),\quad x > 0.$$
+
+Want $g(x) \leq 0 \\;\forall\\; x > 0$, then done.
+
+$$g'(x) = p(1-t)\left((1-t)x + ty\right)^{p-1} - p(1-t)x^{p-1}$$.
+
+If $0 < x < y$ then $g'(x) \geq 0$. If $y < x$ then $g'(x) \leq 0$. In either case, by MVT have $g(x) \leq g(y) = 0 \\;\forall\\; x \in (0, \infty)$.
+{% end %}
+
+{% theorem(name="Minkowski", label="minkowski") %}
+Let $1 \leq p < \infty$, $n \in \mathbb{N}$. For $x,y \in \mathbb{R}^n$ (or $\mathbb{C}^n$),
+$$\lVert x + y \rVert_p \leq \lVert x \rVert_p + \lVert y \rVert_p.$$
+{% end %}
+
+(This shows that $\ell_p^n = (\mathbb{R}^n, \lVert\cdot\rVert_p)$ and $(\ell_p, \lVert\cdot\rVert_p)$ are normed spaces.)
+
+{% proof(ref="minkowski") %}
+todo
+{% end %}
+
+{% exercise() %}
+Show that $\ell_p, 1 \leq p \leq \infty$, is complete. (Slick proof later)
 {% end %}

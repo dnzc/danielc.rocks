@@ -207,7 +207,7 @@ h4 { font-size: 1rem; margin: 1.5rem 0 0.4rem; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  mix-blend-mode: multiply; // white → tint colour; dark math content shows through
+  mix-blend-mode: multiply; // white → tint colour
 }
 .course-card-headinner {
   position: relative;
@@ -289,10 +289,7 @@ h6:hover > .heading-anchor { opacity: 1; }
 }
 
 // theorem-like boxes (theorem, lemma, definition, etc).
-// Colour-coded by kind: a thin left accent stripe + tinted label, while the
-// rest stays monochrome so the page still reads calm. The accent doubles as
-// meaning — you can tell a Definition from a Theorem at a glance. Hues are
-// straight from the Catppuccin palette.
+// colour-coded by kind: a thin left accent stripe + tinted label
 $thm-accents: (
   definition:  #4078f2, // blue
   theorem:     #a626a4, // purple
@@ -300,6 +297,7 @@ $thm-accents: (
   lemma:       #0184bc, // cyan
   corollary:   #d75f00, // orange
   example:     #c18401, // yellow
+  exercise:    #e45649, // red
 );
 
 .thmbox {
@@ -310,7 +308,7 @@ $thm-accents: (
   border: 1px solid var(--border);
   border-left: 3px solid var(--thm-accent);
   border-radius: 4px;
-  // barely-there wash of the accent so the box reads tinted, not loud
+  // lightly tint the box
   background: color-mix(in srgb, var(--thm-accent) 7%, transparent);
 }
 @each $kind, $colour in $thm-accents {
@@ -328,7 +326,6 @@ $thm-accents: (
 .thmbox-body > :last-child { margin-bottom: 0; }
 
 // enumerated conditions inside theorem-like boxes render as (i), (ii), (iii)
-// with hanging, right-aligned labels
 .thmbox-body ol {
   list-style: none;
   counter-reset: axiom;
@@ -353,17 +350,15 @@ $thm-accents: (
 // numbered lists with bold circled markers (wrap list in <div class="circled-list">)
 .prose .circled-list ol {
   list-style: none;
-  counter-reset: circled;
   margin: 0.75rem 0;
   padding-left: 2.8rem;
 
   > li {
-    counter-increment: circled;
     position: relative;
     margin: 1rem 0;
   }
   > li::before {
-    content: counter(circled);
+    content: counter(list-item);
     position: absolute;
     left: -2.8rem;
     box-sizing: border-box;
@@ -477,8 +472,7 @@ blockquote {
   color: var(--text-muted);
   font-style: italic;
 }
-// prose lists: tighter top/bottom margin (smaller gap after a heading) but
-// more breathing room between items
+// prose lists
 .prose ul,
 .prose ol { margin: 0.5rem 0; }
 .prose li { margin: 0.5rem 0; }

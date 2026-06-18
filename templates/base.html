@@ -120,6 +120,11 @@
           if (headings[i].getBoundingClientRect().top <= offset) active = headings[i].id;
           else break;
         }
+        // a section near the page bottom can't scroll its top to the offset,
+        // so once we're at the bottom force the last heading active
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+          active = headings[headings.length - 1].id;
+        }
         setActive(active);
       }
       var ticking = false;
@@ -154,6 +159,42 @@
       } else { fallback(); feedback(); }
       if (a.hash) { try { history.replaceState(null, '', a.hash); } catch (err) {} }
     });
+  </script>
+
+  {# resolve theorem cross-references: number labelled boxes the same way the
+     CSS counters do (section.index), then fill {{ ref(...) }} links and
+     "Proof of …" summaries #}
+  <script>
+    (function () {
+      var course = document.querySelector('.course');
+      if (!course) return;
+      var sec = 0, thm = 0, refs = {};
+      Array.prototype.forEach.call(course.querySelectorAll('h2, .thmbox'), function (n) {
+        if (n.tagName === 'H2') { sec += 1; thm = 0; return; }
+        thm += 1;
+        if (!(n.id && n.id.indexOf('thm-') === 0)) return;
+        var kind = '';
+        Array.prototype.forEach.call(n.classList, function (c) {
+          if (c.indexOf('thmbox-') === 0) kind = c.slice(7);
+        });
+        kind = kind ? kind.charAt(0).toUpperCase() + kind.slice(1) : 'Result';
+        refs[n.id.slice(4)] = { num: sec + '.' + thm, kind: kind, id: n.id };
+      });
+      // inline ref(...) anchors
+      Array.prototype.forEach.call(document.querySelectorAll('.xref[data-ref]'), function (el) {
+        var r = refs[el.getAttribute('data-ref')];
+        if (!r) return;
+        el.href = '#' + r.id;
+        el.textContent = r.kind + ' ' + r.num;
+      });
+      // proof(ref=...) summaries
+      Array.prototype.forEach.call(document.querySelectorAll('.proofbox[data-ref]'), function (p) {
+        var r = refs[p.getAttribute('data-ref')];
+        var sum = p.querySelector('summary');
+        if (!r || !sum) return;
+        sum.textContent = 'Proof of ' + r.kind + ' ' + r.num;
+      });
+    })();
   </script>
 </body>
 

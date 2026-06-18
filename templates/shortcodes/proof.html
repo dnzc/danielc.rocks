@@ -1,5 +1,7 @@
-<details class="proofbox">
-<summary>Proof</summary>
+{%- set of = of | default(value="") -%}
+{%- set ref = ref | default(value="") -%}
+<details class="proofbox"{% if ref %} data-ref="{{ ref | slugify }}"{% endif %}>
+<summary>Proof{% if of %} of {{ of }}{% endif %}</summary>
 
 {{ body | markdown | safe }}
 
