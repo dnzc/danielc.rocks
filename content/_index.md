@@ -8,7 +8,7 @@ I'm a third year maths undergraduate, interested in probability, analysis and co
 
 If you want to have some fun, you can try a [Python challenge](https://terminal.danielc.rocks) I designed, from my days as a cybersec enthusiast.
 
-That's basically it, but here's more [about](/about) this website.
+That's basically it, but here's more [about](@/about.md) this website.
 
 
 ## Contact
