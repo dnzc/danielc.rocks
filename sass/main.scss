@@ -378,7 +378,12 @@ $thm-accents: (
 }
 
 // proof (collapsible)
-.proofbox { margin: 1.25rem 0; }
+.proofbox {
+  margin: 1.25rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
 .proofbox > summary {
   font-style: italic;
   color: var(--text-bright);
@@ -507,7 +512,7 @@ img { max-width: 100%; }
   .giscus-frame { border: none; color-scheme: light dark; }
 }
 
-.tangent {
+.tangent, .comment {
   summary {
     cursor: pointer;
   }

@@ -82,8 +82,8 @@ In a normed space $X$, a useful object is the **unit ball** $B_X \coloneqq \\{ x
   <img src="unitball_linf.svg" alt="l_inf unit ball" style="flex: 1 1 10rem; max-width: 8rem; height: auto;">
 </div>
 
-{% tangent(summary="Sidenote: did I accidentally create an optical illusion?") %}
-It might just be me, but the axes seem all wonky...
+{% comment() %}
+Sidenote: did I accidentally create an optical illusion? The axes seem all wonky...
 {% end %}
 
 #### Remarks
@@ -144,8 +144,8 @@ Examples 5-8 are called **sequence spaces**. They are "infinite-dimensional anal
 We aim at proving these two ubiquitous inequalities. Minkowski is just the triangle inequality for $\ell_p^n$, and Hölder is a generalisation of Cauchy-Schwarz.
 {% end %}
 
-Recall that a function $f : (0, \infty) \to \mathbb{R}$ is **convex** if
-$$f((1-t)x+ty) \leq (1-t)f(x) + tf(y) \\;\forall\\; x,y \in (0,\infty) \\;\forall\\; t \in [0,1]$$
+Recall that a function $f : (0, \infty) \to \mathbb{R}$ is **convex** if $\forall\\; x,y \in (0,\infty)$ and $\forall\\; t \in [0,1]$,
+$$f((1-t)x+ty) \leq (1-t)f(x) + tf(y)$$
 and **concave** if $\geq$.
 
 {% lemma(label="x^p-is-convex") %}
@@ -256,7 +256,7 @@ is a Banach space in the sup-norm $\lVert f \rVert_\infty \coloneqq \sup_{x \in 
 
 11. $C[0,1]$ with the **$L^1$-norm** $\lVert f \rVert_1 \coloneqq \int_0^1 |f(t)| dt, f \in C[0,1]$
 
-    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin: 1rem 0;">
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 1rem; margin: 1rem 0;">
       <div style="flex: 0 1 20rem;">
 
     This is a normed space, but is incomplete:
@@ -327,7 +327,7 @@ Let $X,Y$ be normed spaces and $T: X \to Y$ a linear map. The following are equi
 1. $T$ is cts at 0
 2. $T$ is cts
 3. $T$ is Lipschitz
-4. T is **bounded** i.e. $\exists C \geq 0$ s.t. $\forall x \in \mathbb{X}, \lVert Tx \rVert \leq C \lVert x \rVert$
+4. T is **bounded** i.e. $\exists C \geq 0$ s.t. $\forall x \in X, \lVert Tx \rVert \leq C \lVert x \rVert$
 {% end %}
 
 {% proof() %}
@@ -405,7 +405,14 @@ $\forall x \in X, \lVert TSx \rVert \leq \lVert T \rVert \cdot \lVert Sx \rVert 
 
     $D$ is bounded: $\lVert Df \rVert_\infty = \lVert f' \rVert_\infty \leq \lVert f' \rVert_\infty + \lVert f \rVert_\infty = \lVert f \rVert$. So $\lVert D \rVert \leq 1$.
 
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 2rem; margin: 1rem 0;">
+      <div style="flex: 0 1 20rem;">
+
     To show equality, take $f(x) = \sin(n \pi x)$, then $\lVert Df \rVert_\infty = \pi n, \lVert f \rVert = \pi n + 1$. Thus $\lVert D \rVert = 1$ (take $n$ arb. large).
+
+      </div>
+      <img src="sin(npix).svg" alt="sin(n*pi*x) oscillates rapidly" style="flex: 0 0 auto; width: 150px; height: auto;">
+    </div>
 
     For $f \neq 0, \lVert Df \rVert < \lVert f \rVert$. But still, $\lVert D \rVert = 1$.
 
@@ -415,3 +422,95 @@ $\forall x \in X, \lVert TSx \rVert \leq \lVert T \rVert \cdot \lVert Sx \rVert 
 $$X \oplus Y \coloneqq \big\\{ (x,y) \mid x \in X, y \in Y\big\\}$$ 
 with norm $\lVert (x,y) \rVert_1 \coloneqq \lVert x \rVert + \lVert y \rVert$. The corresponding norm topology is the product topology.
 {% end %}
+
+{% definition(name="isomorphism") %}
+
+Let $X,Y$ be normed spaces.
+
+An **isomorphism** $X \to Y$ is a linear homeomorphism $T: X \to Y$, i.e. $T$ is a linear bijection s.t. $T$ and $T^{-1}$ are bounded. Equivalently, $T$ is a linear bijection and $\exists a>0, b>0 \text{ s.t. } \forall x \in X, a\lVert x \rVert \leq \lVert Tx \rVert \leq b \lVert x \rVert.$
+
+If such a $T$ exists, say $X$ and $Y$ are **isomorphic** and write $X \sim Y$.
+
+An **isometric isomorphism** is a linear bijection  $T: X \to Y$ s.t. $\forall x \in X, \lVert Tx \rVert = \lVert x \rVert$ (i.e. a = b = 1 in the above).
+
+An **isomorphic embedding** $X \to Y$ is a linear map $T: X \to Y$ s.t. $T: X \to TX$ is an isomorphism. If such a $T$ exists, we say $X$ (isomorphically) **embeds into** $Y$, and write $X \hookrightarrow Y$.
+{% end %}
+
+{% definition(name="equivalent spaces") %}
+
+Let $X$ be a vector space. Two norms $\lVert \cdot \rVert, \lVert \cdot \rVert'$ on $X$ are **equivalent** if $Id: (X, \lVert \cdot \rVert) \to (X, \lVert  \rVert')$ is an isomorphism.
+$$\begin{aligned}
+\iff& \lVert \cdot \rVert, \lVert \cdot \rVert' \text{ induce the same topology on } X\\\\
+\iff& \exists a>0, b>0 \text{ s.t. } a \lVert x \rVert \leq \lVert x \rVert' \leq b \lVert x \rVert \forall x \in X\\\\
+&\text{i.e. } aB_X \subseteq B_{X'} \subseteq b B_X
+\end{aligned}$$
+
+For example, $\ell_1^2$ and $\ell_2^2$ are equivalent:
+
+{{ figure(width="300px", src="ball_sandwich.svg") }}
+{% end %}
+
+#### Remarks
+
+{% circled_list() %}
+1. If $X \sim Y$, then $X$ complete $\iff Y$ complete.
+
+    If $\lVert \cdot \rVert, \lVert \cdot \rVert'$ are equivalent norms on a vector space $X$, then $(X,\lVert \cdot \rVert)$ is complete iff $(X, \lVert \cdot \rVert')$ is complete.
+
+    (Isomorphisms preserve completeness, since bilipschitz bijection)
+
+2. Given normed spaces $X,Y$, on $X \oplus Y$ the norm $\lVert (x,y) \rVert_1 = \lVert x \rVert + \lVert y \rVert$ is equivalent to
+$$\lVert (x,y) \rVert_p \coloneqq \left(\lVert x \rVert_p + \lVert y \rVert_p \right)^{\frac{1}{p}} \\; (1 \leq p < \infty)$$ 
+$$\text{\\& to } \lVert (x,y) \rVert_\infty \coloneqq \max\\{\lVert x \rVert, \lVert y \rVert\\}$$
+
+3. On $C[0,1]$, $\lVert \cdot \rVert_\infty$ is complete and $\lVert \cdot \rVert_1$ is incomplete. So $\lVert \cdot \rVert_\infty \nsim \lVert \cdot \rVert_1$. (There does exist an easy direct proof)
+
+    However $\lVert f \rVert_1 = \int_0^1 |f(t) dt \leq \lVert f \rVert_\infty$.
+
+    So $Id: (C[0,1], \lVert \cdot \rVert_\infty \to (C[0,1], \lVert \cdot \rVert_1)$ is a cts linear bijection, but its inverse is not cts.
+
+4. On $c_{00} = \text{span}\\{e_n \mid n \in \mathbb{N}\\}, \lVert \cdot \rVert_1 \nsim \lVert \cdot \rVert_2$:
+
+    Take $x = (1, 1, \dots, 1, 0, \dots)$, then $\lVert x \rVert_1 = n, \lVert x \rVert_2 = \sqrt n$.
+{% end %}
+
+**Note** Let $X,Y$ be normed spaces. In $\mathcal{B}(X,Y)$, convergence implies pointwise convergence (easy to check), i.e. if $T_n \to T$ in $\mathcal{B}(X,Y)$ then $\forall x \in X, T_n x \to Tx$ in $Y$. The converse is false in general, e.g. take $T_n: \ell_1 \to \mathbb{R}, T_n x = x_n$, then $T_n \to 0$ pointwise but $\lVert T_n \rVert = 1 \\;\forall n$ (as $T_n(e_n) = 1$).
+
+{% theorem() %}
+Let $X,Y$ be normed spaces. If $Y$ is complete then $\mathcal{B}(X,Y)$ is complete.
+{% end %}
+
+{% proof() %}
+{% comment() %}
+Slogan: Cauchy $\implies$ ptwise Cauchy $\implies$ ptwise conv, then show ptwise limit is actually a uniform limit.
+{% end %}
+
+Let $(T_n)$ be a Cauchy sequence in $\mathcal{B}(X,Y)$.
+
+Fix $x \in X$. Then $\lVert T_n x - T_m x \rVert \leq \lVert T_n - T_m \rVert \lVert x \rVert \to 0$ as $m,n \to \infty$. So $(T_n x)$ is Cauchy in $Y$, and hence convergent.
+
+Hence we may define $T: X \to Y$, $Tx \coloneqq \lim_{n \to \infty} T_n x$.
+
+- **$T$ linear:**
+$$\begin{aligned}
+T(\lambda x + \mu y) &= \lim_{n \to \infty} \left(T_n(\lambda x + \mu y)\right)\\\\
+&= \lim_{n \to \infty} (\lambda T_n x + \mu T_n y)\\\\
+&= \lambda \lim_{n \to \infty} T_n x + \mu \lim_{n \to \infty} T_n y\\\\
+&= \lambda Tx + \mu Ty \\;\checkmark
+\end{aligned}$$
+
+- **$T$ bounded:**
+    - $(T_n)$ is Cauchy and so bounded: $\exists M \geq 0$ s.t.  $\forall n, \lVert T_n \rVert \leq M$.
+    - Fix $x \in X. \\;\forall n, \lVert T_n x \rVert \leq \lVert T_n \rVert \lVert x \rVert \leq M \lVert x \rVert.$
+    - Let $n \to \infty \implies \lVert Tx \rVert \leq M \lVert x \rVert. \\;\checkmark$
+
+- **$T_n \to T$ in operator norm:**
+    - Let $\varepsilon > 0$, then $\exists N \in \mathbb{N}$ s.t. $\forall m,n \geq N, \lVert T_n - T_m \rVert \leq \varepsilon$.
+    - Fix $x \in X$. Then $\lVert T_n x - T_m x \rVert \leq \varepsilon \lVert x \rVert \\;\forall m,n \geq N.$
+    - Keep $x$ and $n$ fixed, and let $m \to \infty. \implies \lVert T_n x - Tx \rVert \leq \varepsilon \lVert x \rVert$.
+    - Hence $\lVert T_n - T \rVert \leq \varepsilon$ for all $n$ suff large.
+{% end %}
+
+## Dual Spaces
+
+
