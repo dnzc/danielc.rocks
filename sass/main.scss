@@ -518,6 +518,13 @@ img { max-width: 100%; }
 
 .katex { font-size: 1.1em; }
 
+// KaTeX sets \overline / \underline rule thickness inline (defaultRuleThickness);
+// bump it so the bar reads more clearly. !important is needed to beat the inline style.
+.katex .overline-line,
+.katex .underline-line {
+  border-bottom-width: 0.1em !important;
+}
+
 // Render \text{} inside math with the body serif (Newsreader) instead of
 // KaTeX's default KaTeX_Main. Scoped to .text so math symbols/\mathrm are
 // untouched. Override the per-glyph font classes, where KaTeX sets the family.
