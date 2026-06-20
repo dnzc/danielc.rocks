@@ -161,6 +161,50 @@
     });
   </script>
 
+  {# add a hover "Copy" button to every highlighted code block #}
+  <script>
+    (function () {
+      function fallbackCopy(text) {
+        var t = document.createElement('textarea');
+        t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
+        document.body.appendChild(t); t.focus(); t.select();
+        try { document.execCommand('copy'); } catch (err) {}
+        document.body.removeChild(t);
+      }
+      Array.prototype.forEach.call(document.querySelectorAll('pre.giallo'), function (pre) {
+        var parent = pre.parentNode;
+        if (parent && parent.classList && parent.classList.contains('code-wrap')) return;
+        var wrap = document.createElement('div');
+        wrap.className = 'code-wrap';
+        parent.insertBefore(wrap, pre);
+        wrap.appendChild(pre);
+
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'copy-btn';
+        btn.textContent = 'Copy';
+        btn.setAttribute('aria-label', 'Copy code to clipboard');
+        wrap.appendChild(btn);
+
+        btn.addEventListener('click', function () {
+          var code = pre.querySelector('code');
+          var text = code ? code.innerText : pre.innerText;
+          function feedback() {
+            btn.textContent = 'Copied';
+            btn.classList.add('copied');
+            window.setTimeout(function () {
+              btn.textContent = 'Copy';
+              btn.classList.remove('copied');
+            }, 1200);
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(feedback, function () { fallbackCopy(text); feedback(); });
+          } else { fallbackCopy(text); feedback(); }
+        });
+      });
+    })();
+  </script>
+
   {# resolve theorem cross-references: number labelled boxes the same way the
      CSS counters do (section.index), then fill {{ ref(...) }} links and
      "Proof of …" summaries #}

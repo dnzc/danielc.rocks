@@ -1,24 +1,18 @@
-# The URL the site will be built for
 base_url = "https://danielc.rocks"
 
 title = "danielc.rocks"
 description = "Personal website"
 author = "Daniel Chen"
 
-# Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
-
-# Build a search index from page content (handy once the notes pile up)
 build_search_index = true
 
 [markdown]
-# Syntax highlighting for code blocks in notes
-# highlighting = "one-dark"
+highlighting = { theme = "one-light" }
 # Auto-insert a permalink anchor (rendered as ¶ via templates/anchor-link.html)
 # to the right of every heading.
 insert_anchor_links = "right"
 # Collect all footnotes at the bottom of the page and add ↩ back-references
-# (instead of rendering each definition inline where it was written).
 bottom_footnotes = true
 
 [extra]

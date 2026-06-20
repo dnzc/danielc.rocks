@@ -466,8 +466,38 @@ pre {
   overflow-x: auto;
   font-size: 0.8rem;
   line-height: 1.5;
-  // override the default grey background to match Catppuccin
+  // override code background
   &[style] { background: var(--background) !important; }
+}
+
+// hover "Copy" button injected by base.html around each highlighted block
+.code-wrap {
+  position: relative;
+  // keep the button anchored even when the <pre> scrolls horizontally
+  &:hover .copy-btn,
+  .copy-btn:focus-visible { opacity: 1; }
+}
+.copy-btn {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  font-family: $mono;
+  font-size: 0.7rem;
+  line-height: 1;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  background: var(--background-body);
+  color: var(--text-muted);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  &:hover { color: var(--text-main); }
+  &.copied { color: var(--links); border-color: var(--links); opacity: 1; }
+}
+// touch devices have no hover; keep the button visible there
+@media (hover: none) {
+  .copy-btn { opacity: 1; }
 }
 
 blockquote {
@@ -519,6 +549,23 @@ img { max-width: 100%; }
   color: var(--text-muted);
   font-size: 0.7rem;
   font-family: $mono;
+}
+
+.spoiler {
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  padding: 0 1rem;
+  margin: 1rem 0;
+
+  > summary {
+    cursor: pointer;
+    padding: 0.6rem 0;
+    &:hover { color: var(--hover); }
+  }
+  &[open] > summary {
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.6rem;
+  }
 }
 
 .katex { font-size: 1.1em; }

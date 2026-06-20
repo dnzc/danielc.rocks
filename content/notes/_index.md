@@ -11,4 +11,4 @@ Some prettified lecture notes from various courses I took. The raw files are ava
 
 ## Disclaimer
 
-None of this is official; if you spot any errors / have suggestions, feel free to comment at the bottom of the course page. It's your fault if you use these notes and fail your exams.
+None of this is official; it's your fault if you use these notes and fail your exams :/ If you spot any errors or have suggestions etc, feel free to comment at the bottom of the course page.

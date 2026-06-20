@@ -1,5 +1,5 @@
 +++
-title="Summer plans"
+title="Summer Plans"
 date="2026-06-16"
 +++
 

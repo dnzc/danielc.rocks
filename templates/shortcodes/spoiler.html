@@ -1,0 +1,4 @@
+<details class="spoiler"{% if open %} open{% endif %}>
+<summary>{{ summary | default(value="Reveal spoiler...") }}</summary>
+{{ body | markdown | safe }}
+</details>
