@@ -7,7 +7,7 @@ date="2026-06-20"
 As part of [migrating](@/posts/2026-06-14-rebirth/index.md) from the old website, I'm moving the hangman challenge writeup here.
 {% end %}
 
-This is a writeup for my custom [hangman CTF challenge](https://terminal.danielc.rocks). As far as I know it's a completely original challenge; if anything I'm proud of the implementation and how real the terminal feels. The core idea came from talking with a friend about writing a python file that sanitizes to a fixed string, reminiscent of [quines](https://en.wikipedia.org/wiki/Quine_(computing)).
+This is a writeup for my custom [hangman CTF challenge](https://hangman.danielc.rocks). As far as I know it's a completely original challenge; if anything I'm proud of the implementation and how real the terminal feels. The core idea came from talking with a friend about writing a python file that sanitizes to a fixed string, reminiscent of [quines](https://en.wikipedia.org/wiki/Quine_(computing)).
 
 ## Hints
 
