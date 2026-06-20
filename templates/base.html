@@ -7,14 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% block title %}
   {% if current_path and current_path != "/" and this and this.title %}
-  <title>{{ this.title }} · {{ config.title }}</title>
+  <title>{{ this.title }} - {{ config.title }}</title>
   {% else %}
   <title>{{ config.title }}</title>
   {% endif %}
   {% endblock title %}
 
   {% if current_path and current_path != "/" and this and this.title %}
-    {% set page_title = this.title ~ " · " ~ config.title %}
+    {% set page_title = this.title ~ " - " ~ config.title %}
   {% else %}
     {% set page_title = config.title %}
   {% endif %}

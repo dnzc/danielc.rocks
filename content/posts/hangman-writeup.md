@@ -1,5 +1,5 @@
 +++
-title="Challenge Writeup"
+title="Hangman Challenge Writeup"
 date="2026-06-20"
 +++
 
