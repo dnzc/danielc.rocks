@@ -200,7 +200,7 @@ Hence $\lVert \frac{x+y}{\lVert x \rVert_p + \lVert y \rVert_p} \rVert_p \leq 1$
 {% end %}
 
 {% exercise() %}
-Show that $\ell_p, 1 \leq p \leq \infty$, is complete. (Slick proof later)
+Show that $\ell_p, 1 \leq p \leq \infty$, is complete. (Slick proof later; see {{ref(label="dual-of-lp")}}).
 {% end %}
 
 Now onto Hölder.
@@ -360,7 +360,7 @@ The operator norm is a norm on $\mathcal{B}(X,Y)$: given $S,T \in \mathcal{B}(X,
 
 **Notation**: $\mathcal{B}(X)$ for $\mathcal{B}(X,X)$.
 
-{% proposition() %}
+{% proposition(label="norm-of-product") %}
 Let $X,Y,Z$ be normed spaces, $S \in \mathcal{B}(X,Y), T \in \mathcal{B}(Y,Z)$, then $TS \in \mathcal{B}(X,Z)$ and $\lVert TS \rVert \leq \lVert T \rVert \cdot \lVert S \rVert$.
 {% end %}
 
@@ -431,7 +431,7 @@ An **isomorphism** $X \to Y$ is a linear homeomorphism $T: X \to Y$, i.e. $T$ is
 
 If such a $T$ exists, say $X$ and $Y$ are **isomorphic** and write $X \sim Y$.
 
-An **isometric isomorphism** is a linear bijection  $T: X \to Y$ s.t. $\forall x \in X, \lVert Tx \rVert = \lVert x \rVert$ (i.e. a = b = 1 in the above).
+An **isometric isomorphism** is a linear bijection  $T: X \to Y$ s.t. $\forall x \in X, \lVert Tx \rVert = \lVert x \rVert$ (i.e. a = b = 1 in the above); if one exists we write $X \cong Y$.
 
 An **isomorphic embedding** $X \to Y$ is a linear map $T: X \to Y$ s.t. $T: X \to TX$ is an isomorphism. If such a $T$ exists, we say $X$ (isomorphically) **embeds into** $Y$, and write $X \hookrightarrow Y$.
 {% end %}
@@ -476,7 +476,7 @@ $$\text{\\& to } \lVert (x,y) \rVert_\infty \coloneqq \max\\{\lVert x \rVert, \l
 
 **Note** Let $X,Y$ be normed spaces. In $\mathcal{B}(X,Y)$, convergence implies pointwise convergence (easy to check), i.e. if $T_n \to T$ in $\mathcal{B}(X,Y)$ then $\forall x \in X, T_n x \to Tx$ in $Y$. The converse is false in general, e.g. take $T_n: \ell_1 \to \mathbb{R}, T_n x = x_n$, then $T_n \to 0$ pointwise but $\lVert T_n \rVert = 1 \\;\forall n$ (as $T_n(e_n) = 1$).
 
-{% theorem() %}
+{% theorem(label="Xcomplete=>B(X,Y)complete") %}
 Let $X,Y$ be normed spaces. If $Y$ is complete then $\mathcal{B}(X,Y)$ is complete.
 {% end %}
 
@@ -513,4 +513,218 @@ T(\lambda x + \mu y) &= \lim_{n \to \infty} \left(T_n(\lambda x + \mu y)\right)\
 
 ## Dual Spaces
 
+Let $X$ be a normed space. A **functional** on $X$ is a map $X \to $ scalar field.
 
+The **dual space** $X^\*$ of $X$ is the space of all bounded linear functionals on $X$, i.e. $X^* = \mathcal{B}(X,\mathbb{R})$, with the operator norm (recall: for $f \in X^\*, \lVert f \rVert = \sup \big\\{|f(x)| : x \in X, \lVert x \rVert \leq 1\big\\}$). Since the scalar field is complete, {{ ref(label="Xcomplete=>B(X,Y)complete") }} says that
+
+{% theorem() %}
+For any normed space $X$, $X^*$ is a Banach space.
+{% end %}
+
+**Notation:** For $x \in X, f \in X^*$, let $\langle x,f\rangle = f(x)$.
+
+{% tangent(summary="Why the inner product notation?") %}
+It's a bilinear map, but the two arguments live in different spaces. Later we will see the Riesz representation theorem, which says that any linear functional $f$ on a Hilbert space $H$ is "represented" by a vector $y \in H$, which more precisely means that $f$ is the map that "dots with $y$": $f : x \mapsto \langle x,y\rangle$. Thus under this notation, $\langle x,f \rangle = \langle x,y \rangle$, the latter of which is an actual inner product. In other words, "$f$ is the same as its Riesz representer $y$".
+{% end %}
+
+**Note:** $0 \in X^*$. Anything else?
+
+{% theorem(name="Hahn-Banach, non-examinable", label="hahn-banach") %}
+Let $X$ be a normed space, $Y \subseteq X$ a subspace, $g \in Y^\*$. Then $\exists f \in X^*$ s.t. $\left.f\right|_Y = g $ and $\lVert f \rVert = \lVert g \rVert$. In other words, we can extend functionals on $Y$ to functionals on $X$.
+{% end %}
+
+{% corollary(name="existence of norming functional, non-examinable", label="existence-of-norming-fnal") %}
+Let $X$ be a normed space, $x_0 \in X \setminus \\{0\\}$. Then $\exists f \in X^*, \lVert f \rVert = 1,$ s.t. $f(x_0) = \lVert x_0 \rVert.$
+{% end %}
+
+{% tangent(summary="Remarks (non-examinable)") %}
+- For any $g \in B_{X^\*}, |g(x_0)| \leq \lVert g \rVert \cdot \lVert x_0 \rVert \leq \lVert x_0 \rVert$. The above corollary $\implies \exists f \in B_{X^\*}$ s.t. $f(x_0) = \lVert x_0 \rVert$.
+
+    So $\lVert x_0 \rVert = \max \big\\{ |g(x_0)|: g \in B_{X^*} \big\\}.$ $f$ is a "**norming functional**" at $x_0$.
+
+- Given $x \neq y \in X$, let $x_0 = x-y$, then the above corollary $\implies \exists f \in X^*$ s.y. $f(x) \neq f(y)$. Thus $X^\*$ "separates the points" in $X$.
+
+- **Proof of {{ref(label="existence-of-norming-fnal")}}:** $Y \coloneqq \text{span}\\{x_0\\}, g(\lambda x_0) \coloneqq \lambda \lVert x_0 \rVert$. Then $g \in S_{Y^\*}, g(x_0) = \lVert x_0 \rVert.$ Apply Hahn-Banach.
+{% end %}
+
+### Dual space of $\ell_p$ 
+
+For $1 \leq p < \infty$, recall $\ell_p = \overline{\text{span}}\\{e_n \mid n \in \mathbb{N}\\} = \overline{c_{00}}.$
+
+$\forall f \in \ell_p^\*:$ for $x = (x_n) \in \ell_p, f(x) =
+f(\lim_{n \to \infty} \sum_{k=1}^n x_k e_k) = \sum_{k=1}^\infty x_k f(e_k)$ by linearity.
+
+So, $f$ corresponds to the sequence $y = (f(e_n))$, and $f$ is the map that "dots with $y$".
+
+Through this correspondence ($y \leftrightarrow$ map that dots with $y$), we aim to show that $\ell_p^\* \cong \ell_q$, where $q$ is the conjugate index of $p \\;\left(\frac{1}{p} + \frac{1}{q} = 1\right)$.
+
+{% theorem(label="dual-of-lp") %}
+Let $1 < p < \infty$ and let $\frac{1}{p} + \frac{1}{q} = 1$. Then $\ell_p^\*$ is isometrically isomorphic to $\ell_q$.
+{% end %}
+
+{% proof() %}
+Fix $y = (y_n) \in \ell_q$. Define $\varphi_y: \ell_p \to \mathbb{R}$ by $\varphi_y(x) \coloneqq \sum_{n=1}^\infty x_n y_n$ where $x = (x_n)$; this converges by Hölder, and $\varphi_y$ linear bounded: $\lVert \varphi_y \rVert \leq \lVert y \rVert_q$. So $\varphi_y \in \ell_p^\*$.
+
+Hence if we define $\varphi: \ell_q \to \ell_p^\*, y \mapsto \varphi_y$, we have $\varphi$ linear bdd with $\lVert \varphi \rVert \leq 1.$
+
+We'll show $\varphi$ is the required isometric isomorphism; remains to check surjective and isometric.
+
+**Isometric:**
+
+- Need $\lVert \varphi_y \rVert = \lVert y \rVert_q$, i.e. that $\lVert \varphi_y \rVert \geq \lVert y \rVert_q$ (we already showed the other direction).
+- WLOG $y \neq 0$. Define
+$$x_n = \begin{cases}
+\frac{|y_n|^q}{y_n} & \text{if } y_n \neq 0 \\\\
+0 & \text{if } y_n = 0
+\end{cases}$$ 
+
+    $x \in \ell_p \\,? \\; \underbrace{\sum |x_n|^p = \sum |y_n|^{(q-1)/p} = \sum |y_n|^q = \lVert y \rVert_q^q < \infty}_{\text{i.e. } \lVert x \rVert_p^p = \lVert y \rVert_q^q} \\;\checkmark$
+
+- Now, $x \neq 0$ (as $y \neq 0 $) $\implies \frac{x}{\lVert x \rVert_p} \in B_{\ell_p}$, so
+$$\begin{aligned}
+\lVert \varphi_y \rVert &\geq \varphi_y\left(\frac{x}{\lVert x \rVert_p}\right)\\\\
+&= \frac{1}{\lVert x \rVert_p} \sum x_n y_n = \frac{1}{\lVert x \rVert_p} \sum |y_n|^q = \frac{\lVert y \rVert_q^q}{\lVert y \rVert_q^{q/p}} = \lVert y \rVert_q
+\end{aligned}$$ 
+
+    Hence $\lVert \varphi_y \rVert = \lVert y \rVert_q$ as required.
+
+{% tangent(summary="recurring idea: bounding operator norms") %}
+To show operator norm is $\leq$ something, just bound it, and to show $\geq$ something, pick out a specific input.
+{% end %}
+
+**Surjective:**
+
+- Fix $f \in \ell_p^\*$. Seek $y \in \ell_q$ s.t. $f = \varphi_y$.
+
+- As in the "correspondence" above, define $y_n = f(e_n) \\;(n \in \mathbb{N}), y = (y_n).$
+
+    Is $y \in \ell_q \\; ?$
+    - Set $x_n = \begin{cases} \frac{|y_n|^q}{y_n} & \text{if } y_n \neq 0, n \leq N\\\\ 0 & \text{ else} \end{cases}$
+    - Then $x = (x_n) \in \ell_p$ so $f(x) = \sum_{n=1}^N x_n f(e_n) = \sum_{n=1}^N x_n y_n = \sum_{n=1}^N |y_n|^q \leq \lVert f \rVert \cdot \lVert x \rVert_p.$
+    - Also $\lVert x \rVert_p = \left(\sum_{n=1}^N |x_n|^p\right)^{1/p} = \left(\sum_{n=1}^N |y_n|^{(q-1)p}\right)^{1/p} = \left(\sum_{n=1}^N |y_n|^q\right)^{1/p}$
+    - Hence $\sum_{n=1}^N |y_n|^q \leq \lVert f \rVert \left(\sum_{n=1}^N |y_n|^q\right)^{1/p}$. Divide both sides to get $\left(\sum_{n=1}^N |y_n|^q \right)^{1/q} \leq \lVert f \rVert$. Let $N \to \infty \implies y \in \ell_q \\; \checkmark$
+
+        (WLOG we didn't divide by 0, because if $\sum_{n=1}^N |y_n|^q = 0$ then it's true anyway)
+
+- Now $f(e_n) = y_n = \varphi_y(e_n) \\;\forall n \in \mathbb{N}$
+$$\implies f(x) = \varphi_y(x) \\;\forall x \in \text{span}\\{e_n \mid n \in \mathbb{N}\\} = c_{00} \quad \text{ by linearity}$$ 
+$$\implies f(x) = \varphi_y(x) \\;\forall x \in \overline{\text{span}}\\{e_n \mid n \in \mathbb{N}\\} = \ell_p \quad \text{ by continuity}$$ 
+
+So $f = \varphi_y$ as required.
+
+{% comment() %}
+In this proof we define $x_n = |y_n|^q / y_n$ twice, but one of the times we truncate the terms, so that we avoid the issue of dividing by infinity.
+{% end %}
+
+Hence $\ell_p^\* \cong \ell_q.$
+
+{% end %}
+
+#### Remarks
+
+1. By analogous proofs, we also have $\ell_1^\* \cong \ell_\infty, c_0^\* \cong \ell_1$ (see example sheet 1).
+
+    The proof also shows that $\ell_1$ embeds into $\ell_\infty^\*$ isometrically, but the proof of surjectivity breaks down since $\overline{\text{span}}\\{e_n \mid n \in \mathbb{N}\\} = c_0$ in $\ell_\infty$, but  $c_0 \subsetneq \ell_\infty$.
+
+2. From the proof, can show that {{ref(label="existence-of-norming-fnal")}} holds for $\ell_p$.
+
+3. We have shown $\ell_p, 1 \leq p \leq \infty$ are complete, as they are dual spaces. $c_0$ and $c$ are then complete because they're closed in $\ell_\infty$.
+
+### Bidual
+
+$X$ normed space. $X^{**} = (X^\*)^\* = \mathcal{B}(X^\*,\mathbb{R})$ is the **bidual** or **second dual** of $X$.
+
+For $x \in X$, define $\hat{x}: X^\* \to \mathbb{R}$ by $\underbrace{\hat{x}(f) = f(x)}_{\langle f, \hat{x}\rangle = \langle x,f \rangle}$ for $f \in X^\*$.
+
+This is linear and bdd: $|\hat{x}(f)| = |f(x)| \leq \lVert f \rVert \cdot \lVert x \rVert$ so $\hat{x} \in X^{**}, \lVert \hat{x} \rVert \leq \lVert x \rVert.$ 
+
+So have $X \to X^{**}, x \mapsto \hat{x}$. This is linear: $\widehat{\lambda x + \mu y}(f) = f(\lambda x + \mu y) = \lambda f(x) + \mu f(y) = (\lambda \hat{x} + \mu \hat{y})(f).$ 
+
+{% tangent(summary="This map $x \mapsto \hat{x}$ is an isometric embedding $X \hookrightarrow X^{**}$ (non-examinable)") %}
+
+For $x \neq 0$, let $f \in X^\*$ be a norming functional at $x$ (by {{ref(label="existence-of-norming-fnal")}}), i.e. $\lVert f \rVert = 1, f(x) = \lVert x \rVert$. Then $\hat{x}(f) = f(x) = \lVert x \rVert$. Hence $\lVert \hat{x} \rVert = \lVert x \rVert$.
+
+So the canonical map $X \to X^{\*\*}, x \mapsto \hat{x}$ is an isometric isomorphism into $X^{\*\*}$. If surjective, say $X$ is **reflexive**.
+{% end %}
+
+### Dual operators
+
+{% definition() %}
+Let $X,Y$ be normed spaces and fix $T \in \mathcal{B}(X,Y)$. The **dual operator** $T^\*$ of $T$ is the map $T^\*: Y^\* \to X^\*$ defined by $T^\*(g) = g \circ T$.
+{% end %}
+
+By {{ref(label="norm-of-product")}}, $T^*(g) = g \circ T \in X^\*$ and $\lVert T^\*(g) \rVert \leq \lVert g \rVert \cdot \lVert T \rVert$. So $T^\*$ is well-defined. It is clearly linear, and bounded with $\lVert T^\* \rVert \leq \lVert T \rVert$.
+
+**Remark:** Recall that for $x \in X, f \in X^\*, \langle x,f \rangle = f(x).$ Note that $\langle\cdot,\cdot\rangle : X \times X^\* \to $ scalars is bilinear. For $x \in X, g \in Y^\*, \langle x,T^\*(g)\rangle = \langle T(x),g\rangle.$
+
+{% tangent(summary="$\lVert T^* \rVert = \lVert T \rVert$ (non-examinable)") %}
+$$\begin{aligned}
+\lVert T^\* \rVert = \text{sup}\_{g \in B\_{Y^\*}} \lVert T^\* g \rVert &= \text{sup}\_{g \in B\_{Y^\*}} \text{sup}\_{x \in B\_X} |\langle x,T^\* g\rangle| \\\\
+&= \text{sup}\_{g \in B\_X} \underbrace{\text{sup}\_{x \in B\_{Y^\*}} |\langle Tx,g\rangle|}_{ (*) }
+\end{aligned}$$ 
+
+But $(*) = \lVert Tx \rVert$ by {{ref(label="existence-of-norming-fnal")}}, thus $\lVert T^\* \rVert = \lVert T \rVert.$
+{% end %}
+
+{% example() %}
+Let $1 < p,q < \infty, \frac{1}{p}+\frac{1}{q}=1$. Consider $R: \ell_p \to \ell_p, R(x_1,x_2,\dots) = (0,x_1,x_2,\dots)$ (right shift). What is  $R^*:\ell_p^\* \to \ell_p^\*$?
+
+Recall we have $\ell_p^\* \cong \ell_q$ ($y \leftrightarrow \varphi_y$, the map that dots with $y$). We can compute what $R^\*$ does to an arbitrary $\varphi_y \in \ell_p^*$:
+
+$$\begin{aligned}
+(R^*\varphi_y)(x) &=(\varphi_y \circ R)(x) \\\\
+&=\sum\_{n=1}^\infty (Rx)\_ny_n \\\\
+&=\sum\_{n=1}^\infty x\_ny_{n+1}.
+\end{aligned}$$
+
+Hence $R^*\varphi_y=\varphi_z$ where $z=(y_2,y_3,\dots)$.
+
+So, thought of as $R^\*:\ell_q \to \ell_q$, we have that $R^\*$ is the left shift $L: \ell_q \to \ell_q,\\; L(y_1,y_2,\dots)=(y_2,y_3,\dots)$.
+{% end %}
+
+#### Properties
+
+{% circled_list() %}
+1. $(Id_X)^\* = Id_{X^\*}$
+
+2. $(\lambda S + \mu T)^\* = \lambda S^\* + \mu T^\* \\;(S,T \in \mathcal{B}(X,Y), \\; \lambda,\mu \text{ scalars})$
+
+    Indeed, for $g \in Y^\*, x \in X,$
+
+    $$\begin{aligned}
+    \langle x,(\lambda S + \mu T)^\* g\rangle = \langle (\lambda S + \mu T)x,g\rangle &= \langle\lambda Sx + \mu Tx,g\rangle\\\\
+    &= \lambda \langle Sx,g\rangle + \mu\langle Tx,g\rangle\\\\
+    &= \lambda \langle x,S^\*g\rangle + \mu\langle x,T^\*g\rangle\\\\
+    &= \langle x,(\lambda S^\* + \mu T^\*)g\rangle
+    \end{aligned}$$
+
+    Since $x$ arbitrary, have $(\lambda S + \mu T)^\* g = (\lambda S^\* + \mu T^\*)g$
+
+    Since $g$ arbitrary, have $(\lambda S + \mu T)^\* = \lambda S^\* + \mu T^\*$, as required.
+
+3. $(ST)^\* = T^\* S^\* \\;(T \in \mathcal{B}(X,Y), S \in \mathcal{B}(Y,Z))$
+
+    Indeed, $\langle x,(ST)^\* g\rangle = \langle (ST)x,g\rangle = \langle S(Tx),g\rangle = \langle Tx,S^\* g\rangle = \langle x,T^\*(S^\* g)\rangle = \langle x,(T^\*S^\*) g\rangle \\;\checkmark$
+
+{% comment() %}
+Our "inner product" notation has allowed us to "pretend we are working with Hilbert spaces and the adjoint map" and use the same proofs (see the Hilbert Spaces section) TODO
+{% end %}
+
+4. Let $T \in \mathcal{B}(X,Y)$. We have $T^\* \in \mathcal{B}(Y^\*,X^\*)$ and $T^{\*\*} = (T^\*)^\* \in \mathcal{B}(X^{\*\*},Y^{\*\*})$.
+
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 2rem; margin: 1rem 0;">
+      <div style="flex: 0 1 22rem;">
+
+    The diagram commutes, i.e. $\widehat{Tx} = T^{\*\*}\hat{x} \\;\forall x \in X$.
+
+      </div>
+      <img src="dualoperator_commute.svg" alt="double dual operator commutation diagram" style="flex: 0 0 auto; width: 150px; height: auto;">
+    </div>
+
+    Indeed, for $x \in X$ and $g \in Y^\*,\quad\langle g,T^{\*\*}\hat{x}\rangle = \langle T^\* g,\hat{x}\rangle = \langle x,T^\*g\rangle = \langle Tx,g\rangle = \langle g,\widehat{Tx}\rangle\\;\checkmark$
+
+{% end %}
+
+**Note:** $ \raisebox{.5pt}{\textcircled{\footnotesize{1}}} + \raisebox{.5pt}{\textcircled{\footnotesize{3}}}$ show: $X \sim Y \implies X^\* \sim Y^\*$
+
+## Finite-Dimensional Normed Spaces

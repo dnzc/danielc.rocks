@@ -288,6 +288,10 @@ h6:hover > .heading-anchor { opacity: 1; }
   font-weight: 400;
 }
 
+// on course pages, bump every heading up a size step
+.course h2 { font-size: 1.6rem; }
+.course h3 { font-size: 1.45rem; }
+
 // theorem-like boxes (theorem, lemma, definition, etc).
 // colour-coded by kind: a thin left accent stripe + tinted label
 $thm-accents: (
@@ -392,6 +396,76 @@ $thm-accents: (
 .proofbox > summary:hover { color: var(--hover); }
 .proofbox[open] > summary { margin-bottom: 0.4rem; }
 .proofbox > :last-child::after { content: "\00a0∎"; }
+
+// cross-reference hover preview popup (filled in by JS in base.html)
+.xref { white-space: nowrap; }
+.xref-popup {
+  position: absolute;
+  z-index: 50;
+  max-width: min(34rem, 92vw);
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--card-border);
+  border-left: 3px solid var(--thm-accent, var(--card-border));
+  border-radius: 4px;
+  background: var(--background-body);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.18);
+  font-size: 0.95em;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-3px);
+  transition: opacity 0.12s ease, transform 0.12s ease, visibility 0.12s;
+}
+.xref-popup.show { opacity: 1; visibility: visible; transform: none; }
+.xref-popup-head { margin: 0 0 0.35rem; font-weight: 600; color: var(--thm-accent); }
+.xref-popup .thmbox-body > :first-child { margin-top: 0; }
+.xref-popup .thmbox-body > :last-child { margin-bottom: 0; }
+
+// floating "return to where you were" pills after clicking a reference;
+// chained jumps stack as an overlaid deck — older pills peek out behind the
+// front one, and only the front (most recent) pill can be pressed
+.return-stack {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 60;
+}
+.return-btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 0.5rem 0.95rem;
+  font-family: $serif;
+  font-size: 0.9rem;
+  color: var(--text-bright);
+  background: var(--background-body);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  white-space: nowrap;
+  pointer-events: none; // deck cards behind the front one are inert
+  opacity: 0;
+  // --depth: 0 = front pill, 1 = one behind, etc. Each card behind shifts up
+  // a little so the stack is visible, and sits behind on a lower layer.
+  transform: translateY(calc(var(--depth, 0) * -7px)) scale(calc(1 - var(--depth, 0) * 0.03));
+  transform-origin: bottom right;
+  z-index: calc(100 - var(--depth, 0));
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.return-btn.show { opacity: 1; }
+.return-btn.is-top { pointer-events: auto; }
+.return-btn.is-top:hover { color: var(--hover); }
+.return-btn.hiding { opacity: 0; pointer-events: none; }
+
+// brief highlight on the box you land on
+.thmbox { scroll-margin-top: 1rem; }
+.xref-flash { animation: xref-flash 1.3s ease; }
+@keyframes xref-flash {
+  0%, 20% { background: color-mix(in srgb, var(--thm-accent) 24%, transparent); }
+  100% { background: color-mix(in srgb, var(--thm-accent) 7%, transparent); }
+}
 
 h2, h3 { scroll-margin-top: 1.5rem; } // margin for anchor jumps
 
