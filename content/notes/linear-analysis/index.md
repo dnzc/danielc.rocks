@@ -7,7 +7,7 @@ part = "Part II"
 term = "Mich"
 year = "2025"
 lecturer = "Dr András Zsák"
-color = "#e4564922"
+color = "#ffe0d6"
 image = "notes/linear-analysis/thumbnail.svg"
 unfinished = true
 +++
